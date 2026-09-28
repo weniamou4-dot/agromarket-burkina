@@ -25,7 +25,7 @@
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
-  "https://agromarket-burkina.onrender.com";
+  "https://agromarket-burkina-api.onrender.com";
 
 const API_TIMEOUT = 15000;
 
