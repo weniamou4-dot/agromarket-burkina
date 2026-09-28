@@ -257,23 +257,28 @@ app.openapi = custom_openapi
 # ============================================================
 
 app.add_middleware(
+
     CORSMiddleware,
 
     allow_origins=[
-        # Développement local
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-
-        # Production Render
         "https://agromarket-burkina-web.onrender.com",
+          
     ],
 
     allow_credentials=True,
 
-    allow_methods=["*"],
+    allow_methods=[
+        "*"
+    ],
 
-    allow_headers=["*"],
+    allow_headers=[
+        "*"
+    ],
 )
+
+
 # ============================================================
 # FICHIERS STATIQUES AGROMARKET
 # ============================================================
