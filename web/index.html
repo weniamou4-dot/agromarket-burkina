@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- =====================================================
+         CONFIGURATION GÉNÉRALE
+    ====================================================== -->
+
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="theme-color"
+      content="#15803d"
+    />
+
+    <meta
+      name="color-scheme"
+      content="light"
+    />
+
+    <!-- =====================================================
+         SEO
+    ====================================================== -->
+
+    <title>
+      AgroMarket Burkina | Marketplace agricole du Burkina Faso
+    </title>
+
+    <meta
+      name="description"
+      content="AgroMarket Burkina est une marketplace dédiée à l'achat et à la vente de produits agricoles et d'élevage au Burkina Faso."
+    />
+
+    <meta
+      name="keywords"
+      content="AgroMarket Burkina, agriculture Burkina Faso, produits agricoles, élevage, marché agricole, marketplace agricole, vente produits agricoles, achat produits agricoles"
+    />
+
+    <meta
+      name="author"
+      content="AgroMarket Burkina"
+    />
+
+    <meta
+      name="robots"
+      content="index, follow"
+    />
+
+    <meta
+      name="googlebot"
+      content="index, follow"
+    />
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/logo/agromarket-logo.png"
+    />
+
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="/images/logo/agromarket-logo.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="/icons/icon-192.png"
+    />
+
+    <!-- =====================================================
+         PWA
+    ====================================================== -->
+
+    <link
+      rel="manifest"
+      href="/manifest.webmanifest"
+    />
+
+    <!-- =====================================================
+         POLICE
+    ====================================================== -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- =====================================================
+         OPEN GRAPH
+    ====================================================== -->
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:locale"
+      content="fr_BF"
+    />
+
+    <meta
+      property="og:site_name"
+      content="AgroMarket Burkina"
+    />
+
+    <meta
+      property="og:title"
+      content="AgroMarket Burkina | Marketplace agricole"
+    />
+
+    <meta
+      property="og:description"
+      content="Achetez et vendez des produits agricoles et d'élevage au Burkina Faso avec AgroMarket Burkina."
+    />
+
+    <meta
+      property="og:image"
+      content="/images/logo/agromarket-logo.png"
+    />
+
+    <meta
+      property="og:image:alt"
+      content="Logo AgroMarket Burkina"
+    />
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+
+    <meta
+      name="application-name"
+      content="AgroMarket Burkina"
+    />
+
+    <meta
+      name="apple-mobile-web-app-title"
+      content="AgroMarket Burkina"
+    />
+
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="msapplication-TileColor"
+      content="#15803d"
+    />
+
+    <!-- =====================================================
+         TWITTER / X CARD
+    ====================================================== -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content="AgroMarket Burkina | Marketplace agricole"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Achetez et vendez des produits agricoles et d'élevage au Burkina Faso."
+    />
+
+    <meta
+      name="twitter:image"
+      content="/images/logo/agromarket-logo.png"
+    />
+  </head>
+
+  <body>
+    <!-- =====================================================
+         SPLASH SCREEN
+    ====================================================== -->
+
+    <div
+      id="app-splash"
+      class="app-splash"
+      aria-label="Chargement de AgroMarket Burkina"
+      role="status"
+    >
+      <div class="app-splash-content">
+
+        <div class="app-splash-logo-wrapper">
+          <img
+            src="/images/logo/agromarket-logo.png"
+            alt="AgroMarket Burkina"
+            class="app-splash-logo"
+          />
+        </div>
+
+        <div class="app-splash-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <p class="app-splash-title">
+          AgroMarket Burkina
+        </p>
+
+        <p class="app-splash-text">
+          Le marché agricole burkinabè
+        </p>
+
+      </div>
+    </div>
+
+    <!-- =====================================================
+         APPLICATION REACT
+    ====================================================== -->
+
+    <div id="root"></div>
+
+    <!-- =====================================================
+         SCRIPT DE DÉMARRAGE
+    ====================================================== -->
+
+    <script>
+      window.addEventListener("load", function () {
+        const splash = document.getElementById("app-splash");
+
+        if (!splash) {
+          return;
+        }
+
+        setTimeout(function () {
+          splash.classList.add("app-splash-hidden");
+
+          setTimeout(function () {
+            splash.remove();
+          }, 500);
+        }, 700);
+      });
+    </script>
+
+    <!-- =====================================================
+         POINT D'ENTRÉE REACT
+    ====================================================== -->
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,1067 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   PAGE — MESSAGERIE
+   CSS PROFESSIONNEL / RESPONSIVE
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES ET BASE
+   ============================================================ */
+
+.messages-page {
+  --messages-primary: #117642;
+  --messages-primary-dark: #0d6035;
+  --messages-primary-light: #eef8f2;
+
+  --messages-text: #14201a;
+  --messages-text-soft: #405047;
+  --messages-muted: #7b8981;
+
+  --messages-background: #f5f8f6;
+  --messages-card: #ffffff;
+
+  --messages-border: #e1e9e4;
+  --messages-border-soft: #edf2ef;
+
+  --messages-danger: #c73535;
+  --messages-danger-bg: #fff2f2;
+
+  --messages-unread: #117642;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 32px;
+
+  background: var(--messages-background);
+
+  color: var(--messages-text);
+
+  box-sizing: border-box;
+}
+
+.messages-page *,
+.messages-page *::before,
+.messages-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   2. CONTENEUR PRINCIPAL
+   ============================================================ */
+
+.messages-container {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   3. EN-TÊTE
+   ============================================================ */
+
+.messages-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+.messages-header > div {
+  min-width: 0;
+}
+
+.messages-header h1 {
+  margin: 0;
+
+  color: var(--messages-text);
+
+  font-size: 30px;
+  font-weight: 800;
+
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.messages-header p {
+  margin: 7px 0 0;
+
+  color: var(--messages-muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   4. BOUTON ACTUALISER
+   ============================================================ */
+
+.messages-refresh-button {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 10px 16px;
+
+  color: var(--messages-primary-dark);
+
+  background: #ffffff;
+
+  border: 1px solid var(--messages-border);
+
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.messages-refresh-button:hover:not(:disabled) {
+  background: var(--messages-primary-light);
+
+  border-color: #c9dfd1;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 14px rgba(17, 118, 66, 0.08);
+}
+
+.messages-refresh-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.messages-refresh-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   5. ERREUR
+   ============================================================ */
+
+.messages-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+  padding: 14px 16px;
+
+  color: #9f2929;
+
+  background: var(--messages-danger-bg);
+
+  border: 1px solid #efcccc;
+
+  border-radius: 12px;
+}
+
+.messages-error p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.messages-error button {
+  flex: 0 0 auto;
+
+  min-height: 35px;
+
+  padding: 7px 12px;
+
+  color: #a12929;
+
+  background: #ffffff;
+
+  border: 1px solid #e6bcbc;
+
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.messages-error button:hover {
+  background: #fff8f8;
+
+  border-color: #dca6a6;
+}
+
+
+/* ============================================================
+   6. CHARGEMENT
+   ============================================================ */
+
+.messages-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 230px;
+
+  padding: 30px;
+
+  background: var(--messages-card);
+
+  border: 1px solid var(--messages-border);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 18px rgba(20, 45, 30, 0.035);
+}
+
+.messages-loading p {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+
+  color: var(--messages-muted);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.messages-loading p::before {
+  content: "";
+
+  width: 19px;
+  height: 19px;
+
+  margin-right: 11px;
+
+  border: 2px solid #dce8e0;
+  border-top-color: var(--messages-primary);
+
+  border-radius: 50%;
+
+  animation: messages-spinner 0.8s linear infinite;
+}
+
+@keyframes messages-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   7. ÉTAT VIDE
+   ============================================================ */
+
+.messages-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 390px;
+
+  padding: 45px 24px;
+
+  background: var(--messages-card);
+
+  border: 1px solid var(--messages-border);
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow:
+    0 4px 18px rgba(20, 45, 30, 0.035);
+}
+
+.messages-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 18px;
+
+  color: var(--messages-primary);
+
+  background: var(--messages-primary-light);
+
+  border: 1px solid #d9ebdf;
+
+  border-radius: 50%;
+
+  font-size: 30px;
+}
+
+.messages-empty h2 {
+  margin: 0;
+
+  color: var(--messages-text);
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.messages-empty p {
+  max-width: 470px;
+
+  margin: 9px 0 20px;
+
+  color: var(--messages-muted);
+
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   8. LIEN PRODUITS
+   ============================================================ */
+
+.messages-empty-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 10px 17px;
+
+  color: #ffffff;
+
+  background: var(--messages-primary);
+
+  border: 1px solid var(--messages-primary);
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.messages-empty-link:hover {
+  background: var(--messages-primary-dark);
+
+  border-color: var(--messages-primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 14px rgba(17, 118, 66, 0.17);
+}
+
+
+/* ============================================================
+   9. LISTE DES CONVERSATIONS
+   ============================================================ */
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  background: var(--messages-card);
+
+  border: 1px solid var(--messages-border);
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 18px rgba(20, 45, 30, 0.035);
+}
+
+
+/* ============================================================
+   10. CARTE CONVERSATION
+   ============================================================ */
+
+.message-conversation-item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  min-width: 0;
+
+  padding: 17px 20px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid var(--messages-border-soft);
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.message-conversation-item:last-child {
+  border-bottom: 0;
+}
+
+.message-conversation-item:hover {
+  background: #f9fcfa;
+}
+
+.message-conversation-item:focus-visible {
+  background: var(--messages-primary-light);
+
+  box-shadow:
+    inset 0 0 0 2px rgba(17, 118, 66, 0.18);
+}
+
+
+/* ============================================================
+   11. CONVERSATION NON LUE
+   ============================================================ */
+
+.message-conversation-item.has-unread {
+  background: #fbfefc;
+}
+
+.message-conversation-item.has-unread:hover {
+  background: #f4faf6;
+}
+
+.message-conversation-item.has-unread::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 3px;
+
+  background: var(--messages-primary);
+}
+
+
+/* ============================================================
+   12. AVATAR UTILISATEUR
+   ============================================================ */
+
+.message-user-avatar {
+  flex: 0 0 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  overflow: hidden;
+
+  color: var(--messages-primary);
+
+  background: var(--messages-primary-light);
+
+  border: 1px solid #d7e9de;
+
+  border-radius: 50%;
+
+  font-size: 22px;
+}
+
+.message-user-avatar img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* ============================================================
+   13. CONTENU DE LA CONVERSATION
+   ============================================================ */
+
+.message-conversation-content {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+.message-conversation-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  min-width: 0;
+}
+
+.message-conversation-top h2 {
+  min-width: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  color: var(--messages-text);
+
+  font-size: 14px;
+  font-weight: 800;
+
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message-conversation-top time {
+  flex: 0 0 auto;
+
+  color: var(--messages-muted);
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   14. NOM DU PRODUIT / ANNONCE
+   ============================================================ */
+
+.message-conversation-product {
+  margin: 3px 0 0;
+
+  overflow: hidden;
+
+  color: var(--messages-primary);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.4;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   15. APERÇU DU MESSAGE
+   ============================================================ */
+
+.message-conversation-preview {
+  max-width: 720px;
+
+  margin: 5px 0 0;
+
+  overflow: hidden;
+
+  color: var(--messages-muted);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   16. BADGE NON LU
+   ============================================================ */
+
+.message-unread-badge {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 25px;
+  height: 25px;
+
+  padding: 0 7px;
+
+  color: #ffffff;
+
+  background: var(--messages-unread);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   17. FOOTER
+   ============================================================ */
+
+.messages-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  margin-top: 14px;
+
+  padding: 4px 2px;
+}
+
+.messages-footer > span {
+  color: var(--messages-muted);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   18. PAGINATION
+   ============================================================ */
+
+.messages-pagination {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.messages-pagination > span {
+  min-width: 90px;
+
+  color: var(--messages-text-soft);
+
+  font-size: 12px;
+  font-weight: 650;
+
+  text-align: center;
+}
+
+.messages-pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  color: var(--messages-text-soft);
+
+  background: #ffffff;
+
+  border: 1px solid var(--messages-border);
+
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.messages-pagination button:hover:not(:disabled) {
+  color: var(--messages-primary-dark);
+
+  background: var(--messages-primary-light);
+
+  border-color: #c9dfd1;
+
+  transform: translateY(-1px);
+}
+
+.messages-pagination button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.messages-pagination button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   19. PAGE LOADING GLOBAL
+   ============================================================ */
+
+.messages-page.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+}
+
+.messages-page .page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messages-page .page-loading p {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+
+  color: var(--messages-muted);
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.messages-page .page-loading p::before {
+  content: "";
+
+  width: 20px;
+  height: 20px;
+
+  margin-right: 10px;
+
+  border: 2px solid #dce8e0;
+  border-top-color: var(--messages-primary);
+
+  border-radius: 50%;
+
+  animation: messages-spinner 0.8s linear infinite;
+}
+
+
+/* ============================================================
+   20. ACCESSIBILITÉ
+   ============================================================ */
+
+.messages-page button:focus-visible,
+.messages-page a:focus-visible {
+  outline: 3px solid rgba(17, 118, 66, 0.18);
+
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   21. RESPONSIVE — 900 PX
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .messages-page {
+    padding: 24px;
+  }
+
+  .messages-container {
+    max-width: 100%;
+  }
+
+  .messages-header h1 {
+    font-size: 27px;
+  }
+}
+
+
+/* ============================================================
+   22. RESPONSIVE — 650 PX
+   ============================================================ */
+
+@media (max-width: 650px) {
+  .messages-page {
+    padding: 17px;
+  }
+
+  .messages-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .messages-header h1 {
+    font-size: 24px;
+  }
+
+  .messages-header p {
+    font-size: 13px;
+  }
+
+  .messages-refresh-button {
+    width: 100%;
+  }
+
+  .messages-error {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 11px;
+  }
+
+  .messages-error button {
+    width: 100%;
+  }
+
+  .message-conversation-item {
+    gap: 12px;
+
+    padding: 15px;
+  }
+
+  .message-user-avatar {
+    flex-basis: 46px;
+
+    width: 46px;
+    height: 46px;
+
+    font-size: 19px;
+  }
+
+  .message-conversation-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 2px;
+  }
+
+  .message-conversation-top time {
+    font-size: 10px;
+  }
+
+  .message-unread-badge {
+    align-self: flex-start;
+
+    min-width: 23px;
+    height: 23px;
+
+    font-size: 9px;
+  }
+
+  .messages-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .messages-pagination {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+}
+
+
+/* ============================================================
+   23. RESPONSIVE — 450 PX
+   ============================================================ */
+
+@media (max-width: 450px) {
+  .messages-page {
+    padding: 12px;
+  }
+
+  .messages-header h1 {
+    font-size: 22px;
+  }
+
+  .messages-header p {
+    font-size: 12px;
+  }
+
+  .messages-list {
+    border-radius: 13px;
+  }
+
+  .message-conversation-item {
+    align-items: flex-start;
+
+    padding: 13px 12px;
+  }
+
+  .message-user-avatar {
+    flex-basis: 42px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .message-conversation-top h2 {
+    font-size: 13px;
+  }
+
+  .message-conversation-product {
+    font-size: 10px;
+  }
+
+  .message-conversation-preview {
+    font-size: 11px;
+  }
+
+  .message-unread-badge {
+    min-width: 21px;
+    height: 21px;
+
+    padding: 0 6px;
+  }
+
+  .messages-empty {
+    min-height: 340px;
+
+    padding: 35px 18px;
+  }
+
+  .messages-empty-icon {
+    width: 60px;
+    height: 60px;
+
+    font-size: 26px;
+  }
+
+  .messages-empty h2 {
+    font-size: 18px;
+  }
+
+  .messages-empty p {
+    font-size: 12px;
+  }
+
+  .messages-pagination {
+    justify-content: space-between;
+  }
+
+  .messages-pagination > span {
+    min-width: auto;
+
+    font-size: 11px;
+  }
+
+  .messages-pagination button {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+/* ============================================================
+   24. TRÈS PETIT ÉCRAN
+   ============================================================ */
+
+@media (max-width: 350px) {
+  .messages-page {
+    padding: 9px;
+  }
+
+  .message-conversation-item {
+    gap: 9px;
+  }
+
+  .message-user-avatar {
+    flex-basis: 38px;
+
+    width: 38px;
+    height: 38px;
+  }
+
+  .message-unread-badge {
+    min-width: 20px;
+    height: 20px;
+
+    padding: 0 5px;
+
+    font-size: 8px;
+  }
+
+  .message-conversation-preview {
+    max-width: 150px;
+  }
+}
+
+
+/* ============================================================
+   25. RÉDUCTION DES ANIMATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .messages-refresh-button,
+  .messages-empty-link,
+  .message-conversation-item,
+  .messages-pagination button {
+    transition: none;
+  }
+
+  .messages-loading p::before,
+  .messages-page .page-loading p::before {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   FIN DU CSS
+   ============================================================ */

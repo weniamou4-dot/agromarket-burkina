@@ -1,0 +1,268 @@
+/* =========================================================
+   AGROMARKET BURKINA
+   SPLASH SCREEN
+========================================================= */
+
+#app-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(21, 128, 61, 0.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f6fbf7 50%,
+      #eef8f1 100%
+    );
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+#app-splash.app-splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.app-splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(90%, 420px);
+
+  text-align: center;
+
+  animation: splashContentIn 0.7s ease both;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.app-splash-logo-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 150px;
+
+  margin-bottom: 28px;
+
+  border-radius: 38px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 20px 50px rgba(21, 128, 61, 0.15);
+
+  animation:
+    splashLogoIn 0.8s ease both,
+    splashLogoFloat 3s ease-in-out 0.8s infinite;
+}
+
+.app-splash-logo-wrapper::before {
+  content: "";
+
+  position: absolute;
+  inset: -8px;
+
+  border-radius: 44px;
+
+  border: 1px solid rgba(21, 128, 61, 0.10);
+
+  pointer-events: none;
+}
+
+.app-splash-logo {
+  display: block;
+
+  width: 112px;
+  height: 112px;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.app-splash-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 20px;
+
+  margin-bottom: 20px;
+}
+
+.app-splash-loader span {
+  display: block;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #15803d;
+
+  animation: splashDot 1.2s ease-in-out infinite;
+}
+
+.app-splash-loader span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.app-splash-loader span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* =========================================================
+   TEXTES
+========================================================= */
+
+.app-splash-title {
+  margin: 0;
+
+  color: #17311f;
+
+  font-size: 24px;
+  line-height: 1.2;
+
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.app-splash-text {
+  margin: 8px 0 0;
+
+  color: #6f8075;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes splashContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashLogoIn {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes splashDot {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .app-splash-logo-wrapper {
+    width: 125px;
+    height: 125px;
+
+    margin-bottom: 24px;
+
+    border-radius: 32px;
+  }
+
+  .app-splash-logo-wrapper::before {
+    border-radius: 38px;
+  }
+
+  .app-splash-logo {
+    width: 92px;
+    height: 92px;
+  }
+
+  .app-splash-title {
+    font-size: 21px;
+  }
+
+  .app-splash-text {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITÉ
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  #app-splash,
+  .app-splash-content,
+  .app-splash-logo-wrapper,
+  .app-splash-loader span {
+    animation: none;
+    transition: none;
+  }
+}

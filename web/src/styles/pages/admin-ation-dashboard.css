@@ -1,0 +1,1780 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   ADMINISTRATION DASHBOARD
+   PARTIE 1 — STRUCTURE + SIDEBAR + HEADER
+   ============================================================ */
+
+
+/* ============================================================
+   VARIABLES LOCALES
+   ============================================================ */
+
+.admin-page {
+  --admin-primary: #117642;
+  --admin-primary-dark: #0d6035;
+  --admin-primary-light: #eaf7ef;
+
+  --admin-green-soft: #f0f8f3;
+  --admin-green-border: #d7ebdf;
+
+  --admin-text: #14201a;
+  --admin-text-soft: #53625a;
+  --admin-text-muted: #7b8981;
+
+  --admin-background: #f5f8f6;
+  --admin-white: #ffffff;
+
+  --admin-border: #e3e9e5;
+  --admin-border-dark: #d3ddd7;
+
+  --admin-danger: #c73535;
+  --admin-danger-soft: #fff0f0;
+
+  --admin-warning: #b7791f;
+  --admin-warning-soft: #fff8e8;
+
+  --admin-success: #18864b;
+  --admin-success-soft: #edf9f2;
+
+  --admin-sidebar-width: 270px;
+
+  --admin-radius-sm: 8px;
+  --admin-radius-md: 12px;
+  --admin-radius-lg: 16px;
+  --admin-radius-xl: 20px;
+
+  --admin-shadow-sm:
+    0 2px 8px rgba(20, 32, 26, 0.05);
+
+  --admin-shadow-md:
+    0 8px 24px rgba(20, 32, 26, 0.07);
+
+  --admin-shadow-lg:
+    0 16px 40px rgba(20, 32, 26, 0.10);
+
+  min-height: 100vh;
+  background: var(--admin-background);
+  color: var(--admin-text);
+}
+
+
+/* ============================================================
+   RESET LOCAL
+   ============================================================ */
+
+.admin-page *,
+.admin-page *::before,
+.admin-page *::after {
+  box-sizing: border-box;
+}
+
+.admin-page button,
+.admin-page input,
+.admin-page textarea,
+.admin-page select {
+  font: inherit;
+}
+
+.admin-page button {
+  border: 0;
+}
+
+.admin-page button:focus-visible,
+.admin-page input:focus-visible,
+.admin-page textarea:focus-visible,
+.admin-page select:focus-visible {
+  outline: 3px solid rgba(17, 118, 66, 0.18);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   STRUCTURE PRINCIPALE
+   ============================================================ */
+
+.admin-page {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--admin-sidebar-width);
+  height: 100vh;
+
+  padding: 24px 16px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f9fcfa 100%
+    );
+
+  border-right: 1px solid var(--admin-border);
+
+  box-shadow:
+    4px 0 18px rgba(20, 32, 26, 0.035);
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color:
+    #cbd8d0
+    transparent;
+}
+
+
+/* ============================================================
+   SCROLLBAR SIDEBAR
+   ============================================================ */
+
+.admin-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd8d0;
+  border-radius: 999px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #aebdb4;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.admin-logo {
+  display: flex;
+  flex-direction: column;
+
+  padding:
+    4px
+    10px
+    22px;
+
+  border-bottom:
+    1px solid var(--admin-border);
+}
+
+.admin-logo strong {
+  display: block;
+
+  color: var(--admin-primary);
+
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+
+  letter-spacing: -0.03em;
+}
+
+.admin-logo span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--admin-text-muted);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   PROFIL ADMINISTRATEUR
+   ============================================================ */
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 20px;
+  padding: 12px;
+
+  background: var(--admin-green-soft);
+
+  border:
+    1px solid
+    var(--admin-green-border);
+
+  border-radius: var(--admin-radius-md);
+}
+
+
+/* Avatar */
+
+.admin-profile-avatar {
+  flex: 0 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--admin-primary),
+      #199453
+    );
+
+  border-radius: 50%;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+
+  box-shadow:
+    0 4px 12px
+    rgba(17, 118, 66, 0.18);
+}
+
+
+/* Informations profil */
+
+.admin-profile > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-profile strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: var(--admin-text);
+
+  font-size: 0.88rem;
+  font-weight: 750;
+
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-profile span {
+  display: block;
+
+  color: var(--admin-text-muted);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-top: 22px;
+}
+
+
+/* Boutons navigation */
+
+.admin-nav button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding:
+    10px
+    12px;
+
+  color: var(--admin-text-soft);
+
+  background: transparent;
+
+  border-radius: var(--admin-radius-sm);
+
+  cursor: pointer;
+
+  font-size: 0.86rem;
+  font-weight: 650;
+
+  text-align: left;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Icônes navigation */
+
+.admin-nav button svg {
+  flex: 0 0 auto;
+
+  color: currentColor;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+/* Hover */
+
+.admin-nav button:hover {
+  color: var(--admin-primary);
+
+  background:
+    var(--admin-green-soft);
+
+  transform: translateX(2px);
+}
+
+.admin-nav button:hover svg {
+  transform: scale(1.05);
+}
+
+
+/* Active */
+
+.admin-nav button.active {
+  color: var(--admin-primary);
+
+  background:
+    linear-gradient(
+      90deg,
+      #e8f6ed 0%,
+      #f2faf5 100%
+    );
+
+  font-weight: 750;
+}
+
+
+/* Barre active */
+
+.admin-nav button.active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+
+  width: 3px;
+
+  background: var(--admin-primary);
+
+  border-radius:
+    0
+    4px
+    4px
+    0;
+}
+
+
+/* ============================================================
+   COMPTEUR NAVIGATION
+   ============================================================ */
+
+.admin-nav-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 22px;
+  height: 22px;
+
+  margin-left: auto;
+  padding:
+    0
+    6px;
+
+  color: #ffffff;
+
+  background: var(--admin-primary);
+
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   BAS SIDEBAR
+   ============================================================ */
+
+.admin-sidebar-bottom {
+  margin-top: auto;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    var(--admin-border);
+}
+
+
+.admin-sidebar-bottom button {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 42px;
+
+  padding:
+    9px
+    11px;
+
+  color: var(--admin-text-soft);
+
+  background: transparent;
+
+  border-radius: var(--admin-radius-sm);
+
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 650;
+
+  text-align: left;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+
+.admin-sidebar-bottom button:hover {
+  color: var(--admin-primary);
+
+  background:
+    var(--admin-green-soft);
+
+  padding-left: 14px;
+}
+
+
+/* ============================================================
+   CONTENU PRINCIPAL
+   ============================================================ */
+
+.admin-content {
+  width: calc(
+    100% - var(--admin-sidebar-width)
+  );
+
+  min-height: 100vh;
+
+  margin-left:
+    var(--admin-sidebar-width);
+
+  padding:
+    32px
+    38px
+    48px;
+}
+
+
+/* ============================================================
+   HEADER ADMIN
+   ============================================================ */
+
+.admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+
+  width: 100%;
+
+  padding-bottom: 28px;
+
+  border-bottom:
+    1px solid
+    var(--admin-border);
+}
+
+
+/* Texte header */
+
+.admin-header > div {
+  min-width: 0;
+}
+
+
+.admin-header > div > span {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 8px;
+
+  color: var(--admin-primary);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+.admin-header h1 {
+  margin: 0;
+
+  color: var(--admin-text);
+
+  font-size: clamp(
+    1.65rem,
+    2.3vw,
+    2.25rem
+  );
+
+  font-weight: 800;
+
+  letter-spacing: -0.035em;
+
+  line-height: 1.15;
+}
+
+
+.admin-header p {
+  max-width: 720px;
+
+  margin:
+    10px
+    0
+    0;
+
+  color: var(--admin-text-soft);
+
+  font-size: 0.92rem;
+
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   BOUTON ACTUALISER
+   ============================================================ */
+
+.admin-refresh-button {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 42px;
+
+  padding:
+    9px
+    15px;
+
+  color: var(--admin-primary);
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    var(--admin-green-border);
+
+  border-radius: 10px;
+
+  box-shadow: var(--admin-shadow-sm);
+
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 750;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.admin-refresh-button:hover:not(:disabled) {
+  color: #ffffff;
+
+  background: var(--admin-primary);
+
+  border-color:
+    var(--admin-primary);
+
+  box-shadow:
+    0 6px 16px
+    rgba(17, 118, 66, 0.16);
+
+  transform: translateY(-1px);
+}
+
+
+.admin-refresh-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+
+.admin-refresh-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* Rotation icône pendant actualisation */
+
+.admin-refresh-button:disabled svg {
+  animation:
+    admin-refresh-spin 1s linear infinite;
+}
+
+
+@keyframes admin-refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLETTE LARGE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+  .admin-page {
+    --admin-sidebar-width: 235px;
+  }
+
+  .admin-sidebar {
+    padding:
+      20px
+      12px;
+  }
+
+  .admin-content {
+    padding:
+      28px
+      26px
+      42px;
+  }
+
+  .admin-nav button {
+    font-size: 0.82rem;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLETTE
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .admin-page {
+    display: block;
+
+    --admin-sidebar-width: 100%;
+  }
+
+
+  /* Sidebar devient horizontale */
+
+  .admin-sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    padding:
+      16px
+      18px;
+
+    border-right: 0;
+    border-bottom:
+      1px solid
+      var(--admin-border);
+
+    overflow: visible;
+  }
+
+
+  .admin-logo {
+    padding:
+      0
+      0
+      15px;
+  }
+
+
+  .admin-profile {
+    margin-top: 14px;
+  }
+
+
+  .admin-nav {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 6px;
+
+    margin-top: 16px;
+  }
+
+
+  .admin-nav button {
+    min-height: 42px;
+  }
+
+
+  .admin-sidebar-bottom {
+    margin-top: 14px;
+
+    padding-top: 14px;
+  }
+
+
+  .admin-sidebar-bottom button {
+    justify-content: center;
+
+    text-align: center;
+  }
+
+
+  .admin-content {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding:
+      24px
+      20px
+      40px;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .admin-sidebar {
+    padding:
+      14px;
+  }
+
+
+  .admin-profile {
+    padding: 10px;
+  }
+
+
+  .admin-profile-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+  }
+
+
+  .admin-nav {
+    grid-template-columns: 1fr;
+  }
+
+
+  .admin-nav button {
+    min-height: 44px;
+
+    padding:
+      10px
+      11px;
+  }
+
+
+  .admin-content {
+    padding:
+      20px
+      14px
+      32px;
+  }
+
+
+  .admin-header {
+    flex-direction: column;
+    gap: 18px;
+
+    padding-bottom: 22px;
+  }
+
+
+  .admin-header h1 {
+    font-size: 1.55rem;
+  }
+
+
+  .admin-header p {
+    font-size: 0.84rem;
+  }
+
+
+  .admin-refresh-button {
+    width: 100%;
+  }
+
+}
+
+
+/* ============================================================
+   PETITS ÉCRANS
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .admin-logo strong {
+    font-size: 1.2rem;
+  }
+
+
+  .admin-logo span {
+    font-size: 0.65rem;
+  }
+
+
+  .admin-content {
+    padding:
+      18px
+      12px
+      28px;
+  }
+
+
+  .admin-header h1 {
+    font-size: 1.4rem;
+  }
+
+}
+
+
+/* ============================================================
+   ACCESSIBILITÉ — RÉDUCTION DES ANIMATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .admin-page *,
+  .admin-page *::before,
+  .admin-page *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+}
+/* ============================================================
+   ADMIN DASHBOARD
+   PARTIE 2 — ALERTES / SECTIONS / KPI / PANNEAUX
+   ============================================================ */
+
+
+/* ============================================================
+   1. ALERTES
+   ============================================================ */
+
+.admin-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-alert-error {
+  color: #9f2626;
+  background: #fff3f3;
+  border-color: #f0caca;
+}
+
+.admin-alert-success {
+  color: #176b3d;
+  background: #effaf3;
+  border-color: #c9e9d5;
+}
+
+
+/* ============================================================
+   2. SECTION PRINCIPALE
+   ============================================================ */
+
+.admin-section {
+  width: 100%;
+  min-width: 0;
+
+  animation: admin-section-enter 0.25s ease;
+}
+
+@keyframes admin-section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ============================================================
+   3. EN-TÊTE DES SECTIONS
+   ============================================================ */
+
+.admin-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+.admin-section-heading > div {
+  min-width: 0;
+}
+
+.admin-section-heading span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--admin-primary, #117642);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-section-heading h2 {
+  margin: 0;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.admin-section-heading p {
+  max-width: 720px;
+
+  margin: 8px 0 0;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   4. GRILLE DES KPI
+   ============================================================ */
+
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+
+/* ============================================================
+   5. CARTE KPI
+   ============================================================ */
+
+.admin-kpi-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--admin-border, #e3e9e5);
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(18, 45, 30, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-kpi-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #d4e2d9;
+
+  box-shadow: 0 10px 26px rgba(18, 45, 30, 0.07);
+}
+
+
+/* ============================================================
+   6. ICÔNE KPI
+   ============================================================ */
+
+.admin-kpi-icon {
+  flex: 0 0 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  color: var(--admin-primary, #117642);
+
+  background: var(--admin-green-soft, #f0f8f3);
+
+  border-radius: 13px;
+}
+
+.admin-kpi-card:nth-child(2) .admin-kpi-icon {
+  color: #2768a5;
+  background: #eef5fc;
+}
+
+.admin-kpi-card:nth-child(3) .admin-kpi-icon {
+  color: #9a6816;
+  background: #fff8e9;
+}
+
+.admin-kpi-card:nth-child(4) .admin-kpi-icon {
+  color: #7545a7;
+  background: #f6effb;
+}
+
+
+/* ============================================================
+   7. CONTENU KPI
+   ============================================================ */
+
+.admin-kpi-card > div:last-child {
+  min-width: 0;
+}
+
+.admin-kpi-card span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.admin-kpi-card strong {
+  display: block;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.admin-kpi-card small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   8. GRILLE DU TABLEAU DE BORD
+   ============================================================ */
+
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+
+/* ============================================================
+   9. PANNEAU ADMINISTRATION
+   ============================================================ */
+
+.admin-panel {
+  min-width: 0;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--admin-border, #e3e9e5);
+  border-radius: 16px;
+
+  box-shadow: 0 5px 18px rgba(18, 45, 30, 0.035);
+}
+
+.admin-dashboard-grid .admin-panel {
+  min-height: 210px;
+}
+
+
+/* ============================================================
+   10. EN-TÊTE D'UN PANNEAU
+   ============================================================ */
+
+.admin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 20px;
+}
+
+.admin-panel-header > div {
+  min-width: 0;
+}
+
+.admin-panel-header h3 {
+  margin: 0;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.admin-panel-header p {
+  margin: 5px 0 0;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.admin-panel-header > span {
+  flex: 0 0 auto;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   11. MÉTRIQUES À L'INTÉRIEUR DES PANNEAUX
+   ============================================================ */
+
+.admin-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  min-width: 0;
+  padding: 13px 14px;
+
+  background: #f8faf9;
+
+  border: 1px solid #edf1ee;
+  border-radius: 11px;
+}
+
+.admin-metric span {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-metric strong {
+  flex: 0 0 auto;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   12. VALEURS FINANCIÈRES
+   ============================================================ */
+
+.admin-financial {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 16px;
+
+  margin-bottom: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #f0f8f3 0%,
+    #f8fbf9 100%
+  );
+
+  border: 1px solid #dcebe1;
+  border-radius: 13px;
+}
+
+.admin-financial span {
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-financial strong {
+  color: var(--admin-primary-dark, #0d6035);
+
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   13. BARRE DE PROGRESSION / TAUX
+   ============================================================ */
+
+.admin-progress {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  margin-top: 10px;
+
+  background: #edf2ee;
+
+  border-radius: 999px;
+}
+
+.admin-progress-bar {
+  width: 0;
+  height: 100%;
+
+  background: var(--admin-primary, #117642);
+
+  border-radius: inherit;
+
+  transition: width 0.35s ease;
+}
+
+
+/* ============================================================
+   14. PANNEAUX PRIORITAIRES
+   ============================================================ */
+
+.admin-priority-panel {
+  margin-top: 16px;
+}
+
+.admin-priority-panel + .admin-priority-panel {
+  margin-top: 16px;
+}
+
+
+/* ============================================================
+   15. OUTILS RAPIDES
+   ============================================================ */
+
+.admin-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-quick-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 14px;
+
+  color: var(--admin-text, #14201a);
+  background: #ffffff;
+
+  border: 1px solid var(--admin-border, #e3e9e5);
+  border-radius: 12px;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-quick-action:hover {
+  background: var(--admin-green-soft, #f0f8f3);
+
+  border-color: #cfe1d5;
+
+  transform: translateY(-1px);
+}
+
+.admin-quick-action-icon {
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  color: var(--admin-primary, #117642);
+
+  background: var(--admin-green-soft, #f0f8f3);
+
+  border-radius: 10px;
+}
+
+.admin-quick-action-content {
+  min-width: 0;
+}
+
+.admin-quick-action-content strong {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.admin-quick-action-content span {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   16. LISTE DES DEMANDES PRIORITAIRES
+   ============================================================ */
+
+.admin-priority-list {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.admin-priority-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #edf1ee;
+}
+
+.admin-priority-item:first-child {
+  padding-top: 0;
+}
+
+.admin-priority-item:last-child {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.admin-priority-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.admin-priority-avatar {
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  color: var(--admin-primary, #117642);
+
+  background: var(--admin-green-soft, #f0f8f3);
+
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.admin-priority-info {
+  min-width: 0;
+}
+
+.admin-priority-info strong {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--admin-text, #14201a);
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.admin-priority-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--admin-muted, #7b8981);
+
+  font-size: 11px;
+}
+
+.admin-priority-status {
+  flex: 0 0 auto;
+
+  padding: 5px 9px;
+
+  color: #946316;
+  background: #fff7e7;
+
+  border: 1px solid #f2dfb5;
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 750;
+}
+
+
+/* ============================================================
+   17. ÉTAT VIDE DANS LES PANNEAUX
+   ============================================================ */
+
+.admin-empty-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100px;
+
+  padding: 20px;
+
+  color: var(--admin-muted, #7b8981);
+
+  background: #fafcfb;
+
+  border: 1px dashed #dce5df;
+  border-radius: 12px;
+
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   18. RESPONSIVE — TABLETTE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .admin-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ============================================================
+   19. RESPONSIVE — PETITE TABLETTE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .admin-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-dashboard-grid .admin-panel {
+    min-height: auto;
+  }
+
+  .admin-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .admin-panel {
+    padding: 18px;
+  }
+}
+
+
+/* ============================================================
+   20. RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .admin-alert {
+    padding: 12px 13px;
+
+    font-size: 13px;
+  }
+
+  .admin-section-heading {
+    margin-bottom: 18px;
+  }
+
+  .admin-section-heading h2 {
+    font-size: 21px;
+  }
+
+  .admin-section-heading p {
+    font-size: 13px;
+  }
+
+  .admin-kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .admin-kpi-card {
+    padding: 16px;
+  }
+
+  .admin-kpi-icon {
+    flex-basis: 42px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .admin-kpi-card strong {
+    font-size: 22px;
+  }
+
+  .admin-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel {
+    padding: 16px;
+  }
+
+  .admin-panel-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .admin-quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-priority-item {
+    align-items: flex-start;
+  }
+
+  .admin-priority-status {
+    align-self: flex-start;
+  }
+}
+
+
+/* ============================================================
+   21. TRÈS PETIT ÉCRAN
+   ============================================================ */
+
+@media (max-width: 400px) {
+  .admin-kpi-card {
+    gap: 10px;
+  }
+
+  .admin-kpi-icon {
+    flex-basis: 38px;
+
+    width: 38px;
+    height: 38px;
+  }
+
+  .admin-kpi-card strong {
+    font-size: 20px;
+  }
+
+  .admin-financial strong {
+    font-size: 21px;
+  }
+
+  .admin-priority-main {
+    gap: 9px;
+  }
+
+  .admin-priority-avatar {
+    flex-basis: 34px;
+
+    width: 34px;
+    height: 34px;
+  }
+}
+
+
+/* ============================================================
+   22. ACCESSIBILITÉ / MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-section {
+    animation: none;
+  }
+
+  .admin-kpi-card,
+  .admin-quick-action {
+    transition: none;
+  }
+
+  .admin-progress-bar {
+    transition: none;
+  }
+}

@@ -1,0 +1,1384 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   MODERATION DASHBOARD
+   Styles isolés de la page de modération
+   ============================================================ */
+
+/* ============================================================
+   VARIABLES LOCALES
+   ============================================================ */
+
+.moderation-page {
+  --mod-green: #16834a;
+  --mod-green-dark: #116b3c;
+  --mod-green-light: #eaf7ef;
+
+  --mod-blue: #2563eb;
+  --mod-blue-light: #eff6ff;
+
+  --mod-orange: #d97706;
+  --mod-orange-light: #fff7ed;
+
+  --mod-red: #dc2626;
+  --mod-red-dark: #b91c1c;
+  --mod-red-light: #fef2f2;
+
+  --mod-text: #16221b;
+  --mod-text-secondary: #526159;
+  --mod-text-muted: #7a8780;
+
+  --mod-border: #e1e8e3;
+  --mod-border-light: #edf1ee;
+
+  --mod-background: #f6f8f6;
+  --mod-white: #ffffff;
+
+  --mod-shadow-sm: 0 2px 8px rgba(20, 45, 30, 0.06);
+  --mod-shadow-md: 0 8px 24px rgba(20, 45, 30, 0.09);
+  --mod-shadow-lg: 0 18px 50px rgba(20, 45, 30, 0.16);
+
+  min-height: 100vh;
+  background: var(--mod-background);
+  color: var(--mod-text);
+}
+
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+.moderation-page *,
+.moderation-page *::before,
+.moderation-page *::after {
+  box-sizing: border-box;
+}
+
+.moderation-page button,
+.moderation-page input,
+.moderation-page textarea {
+  font: inherit;
+}
+
+.moderation-page button {
+  cursor: pointer;
+}
+
+.moderation-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.moderation-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.moderation-page .container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.moderation-header {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 0;
+  background:
+    linear-gradient(
+      135deg,
+      #0f6d3d 0%,
+      #16834a 55%,
+      #199453 100%
+    );
+  color: #ffffff;
+}
+
+.moderation-header::before {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  top: -190px;
+  right: -100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.moderation-header::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  bottom: -150px;
+  left: -80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.moderation-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.moderation-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.moderation-identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.moderation-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 62px;
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.moderation-identity > div:last-child {
+  min-width: 0;
+}
+
+.moderation-header h1 {
+  margin: 4px 0 7px;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.moderation-header p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   EYEBROW
+   ============================================================ */
+
+.moderation-page .section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mod-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.moderation-header .section-eyebrow {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.moderation-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.moderation-page .btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.moderation-page .btn:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.moderation-page .btn-outline {
+  border-color: var(--mod-border);
+  background: var(--mod-white);
+  color: var(--mod-text);
+}
+
+.moderation-page .btn-outline:hover:not(:disabled) {
+  border-color: #b8c8bd;
+  background: #f8faf8;
+}
+
+.moderation-header .btn-outline {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+}
+
+.moderation-header .btn-outline:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.moderation-page .btn-primary {
+  border-color: var(--mod-green);
+  background: var(--mod-green);
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgba(22, 131, 74, 0.18);
+}
+
+.moderation-page .btn-primary:hover:not(:disabled) {
+  border-color: var(--mod-green-dark);
+  background: var(--mod-green-dark);
+  box-shadow: 0 7px 18px rgba(22, 131, 74, 0.24);
+}
+
+.moderation-page .btn-danger {
+  border-color: var(--mod-red);
+  background: var(--mod-red);
+  color: #ffffff;
+}
+
+.moderation-page .btn-danger:hover:not(:disabled) {
+  border-color: var(--mod-red-dark);
+  background: var(--mod-red-dark);
+}
+
+.moderation-page .btn-ghost {
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--mod-text-secondary);
+}
+
+.moderation-page .btn-ghost:hover:not(:disabled) {
+  background: #f1f4f2;
+  color: var(--mod-text);
+}
+
+.moderation-page .btn-sm {
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+}
+
+
+/* ============================================================
+   CONTENU
+   ============================================================ */
+
+.moderation-content {
+  padding-top: 28px;
+  padding-bottom: 60px;
+}
+
+.moderation-page .page-section-sm {
+  padding-top: 28px;
+}
+
+
+/* ============================================================
+   ALERTES
+   ============================================================ */
+
+.moderation-page .alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.moderation-page .alert-danger {
+  border-color: #fecaca;
+  background: var(--mod-red-light);
+  color: #991b1b;
+}
+
+.moderation-page .alert-success {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.moderation-page .alert-warning {
+  border-color: #fed7aa;
+  background: var(--mod-orange-light);
+  color: #9a3412;
+}
+
+
+/* ============================================================
+   GRID STATISTIQUES
+   ============================================================ */
+
+.moderation-page .grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.moderation-stats {
+  margin-bottom: 24px;
+}
+
+.moderation-page .card {
+  border: 1px solid var(--mod-border);
+  border-radius: 15px;
+  background: var(--mod-white);
+  box-shadow: var(--mod-shadow-sm);
+}
+
+.moderation-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 125px;
+  padding: 20px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.moderation-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mod-shadow-md);
+}
+
+.moderation-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: var(--mod-green-light);
+  color: var(--mod-green);
+}
+
+.moderation-stat-card > div:last-child {
+  min-width: 0;
+}
+
+.moderation-stat-card span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--mod-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.moderation-stat-card strong {
+  display: block;
+  color: var(--mod-text);
+  font-size: 1.65rem;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.moderation-stat-card small {
+  display: block;
+  margin-top: 4px;
+  color: var(--mod-text-muted);
+  font-size: 0.74rem;
+}
+
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.moderation-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 32px;
+  padding: 14px;
+}
+
+.moderation-search {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 260px;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--mod-border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--mod-text-muted);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.moderation-search:focus-within {
+  border-color: var(--mod-green);
+  box-shadow: 0 0 0 3px rgba(22, 131, 74, 0.1);
+}
+
+.moderation-search svg {
+  flex: 0 0 auto;
+}
+
+.moderation-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  margin-left: 9px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--mod-text);
+  font-size: 0.88rem;
+}
+
+.moderation-search input::placeholder {
+  color: #98a39d;
+}
+
+.moderation-filters {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border: 1px solid var(--mod-border);
+  border-radius: 10px;
+  background: #f7f9f7;
+}
+
+.moderation-filters button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--mod-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.moderation-filters button:hover {
+  color: var(--mod-text);
+  background: #ffffff;
+}
+
+.moderation-filters button.active {
+  background: #ffffff;
+  color: var(--mod-green);
+  box-shadow: 0 2px 7px rgba(20, 45, 30, 0.08);
+}
+
+
+/* ============================================================
+   LISTE DE MODÉRATION
+   ============================================================ */
+
+.moderation-list-section {
+  width: 100%;
+}
+
+.moderation-list-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.moderation-list-header h2 {
+  margin: 5px 0 4px;
+  color: var(--mod-text);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+.moderation-list-header p {
+  margin: 0;
+  color: var(--mod-text-muted);
+  font-size: 0.83rem;
+}
+
+.moderation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+/* ============================================================
+   ITEM ANNONCE
+   ============================================================ */
+
+.moderation-item {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  min-height: 220px;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.moderation-item:hover {
+  border-color: #d2ddd5;
+  transform: translateY(-2px);
+  box-shadow: var(--mod-shadow-md);
+}
+
+.moderation-item-image {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+  background: #edf2ee;
+}
+
+.moderation-item-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+
+.moderation-no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  gap: 9px;
+  color: #8b9890;
+  background:
+    linear-gradient(
+      135deg,
+      #f1f4f1,
+      #e7ece8
+    );
+}
+
+.moderation-no-image span {
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.moderation-item-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 21px 23px;
+}
+
+.moderation-item-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.moderation-item-heading h3 {
+  margin: 8px 0 0;
+  color: var(--mod-text);
+  font-size: 1.17rem;
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.moderation-annonce-id {
+  flex: 0 0 auto;
+  color: var(--mod-text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.moderation-page .badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 0.69rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.moderation-page .badge-warning {
+  background: #fff7ed;
+  color: #b45309;
+  border: 1px solid #fed7aa;
+}
+
+
+/* ============================================================
+   INFORMATIONS ANNONCE
+   ============================================================ */
+
+.moderation-item-information {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 18px;
+}
+
+.moderation-item-information > div {
+  min-width: 0;
+  padding-right: 12px;
+  border-right: 1px solid var(--mod-border-light);
+}
+
+.moderation-item-information > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.moderation-item-information span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--mod-text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+
+.moderation-item-information strong {
+  display: block;
+  overflow: hidden;
+  color: var(--mod-text);
+  font-size: 0.83rem;
+  line-height: 1.4;
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+
+.moderation-item-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 16px 0 0;
+  color: var(--mod-text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+/* ============================================================
+   FOOTER ITEM
+   ============================================================ */
+
+.moderation-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.moderation-item-footer > small {
+  color: var(--mod-text-muted);
+  font-size: 0.73rem;
+}
+
+.moderation-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.moderation-page .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 45px 25px;
+  border: 1px dashed #cbd7cf;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.moderation-page .empty-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background: var(--mod-green-light);
+  color: var(--mod-green);
+}
+
+.moderation-page .empty-state-title {
+  margin: 0;
+  color: var(--mod-text);
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.moderation-page .empty-state-description {
+  max-width: 570px;
+  margin: 9px auto 20px;
+  color: var(--mod-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+.moderation-modal-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(10, 24, 16, 0.62);
+  backdrop-filter: blur(5px);
+  animation: moderationOverlayIn 0.2s ease;
+}
+
+.moderation-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(760px, 100%);
+  max-height: min(880px, calc(100vh - 50px));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: var(--mod-shadow-lg);
+  animation: moderationModalIn 0.22s ease;
+}
+
+.moderation-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 21px 24px;
+  border-bottom: 1px solid var(--mod-border);
+}
+
+.moderation-modal-header h2 {
+  max-width: 600px;
+  margin: 5px 0 0;
+  color: var(--mod-text);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.moderation-modal-body {
+  overflow-y: auto;
+  padding: 24px;
+}
+
+
+/* ============================================================
+   DÉTAILS MODAL
+   ============================================================ */
+
+.moderation-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.moderation-detail-grid > div {
+  padding: 14px;
+  border: 1px solid var(--mod-border-light);
+  border-radius: 11px;
+  background: #f9fbf9;
+}
+
+.moderation-detail-grid span,
+.moderation-description > span,
+.moderation-images > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--mod-text-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.moderation-detail-grid strong {
+  display: block;
+  color: var(--mod-text);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.moderation-description {
+  margin-bottom: 22px;
+  padding: 16px;
+  border: 1px solid var(--mod-border-light);
+  border-radius: 11px;
+  background: #fafcfb;
+}
+
+.moderation-description p {
+  margin: 0;
+  color: var(--mod-text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+
+/* ============================================================
+   IMAGES MODAL
+   ============================================================ */
+
+.moderation-images {
+  margin-bottom: 23px;
+}
+
+.moderation-images > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.moderation-images img {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  border: 1px solid var(--mod-border);
+  border-radius: 10px;
+  background: #edf2ee;
+}
+
+
+/* ============================================================
+   FORMULAIRE
+   ============================================================ */
+
+.moderation-page .form-group {
+  margin-top: 5px;
+}
+
+.moderation-page .form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--mod-text);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.moderation-page .form-textarea {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 14px;
+  resize: vertical;
+  border: 1px solid var(--mod-border);
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: var(--mod-text);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.moderation-page .form-textarea::placeholder {
+  color: #9ba59f;
+}
+
+.moderation-page .form-textarea:focus {
+  border-color: var(--mod-green);
+  box-shadow: 0 0 0 3px rgba(22, 131, 74, 0.1);
+}
+
+.moderation-page .form-textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  background: #f5f7f5;
+}
+
+.moderation-page .form-help {
+  display: block;
+  margin-top: 6px;
+  color: var(--mod-text-muted);
+  font-size: 0.72rem;
+}
+
+
+/* ============================================================
+   ALERTE MODAL
+   ============================================================ */
+
+.moderation-modal-body > .alert-warning {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.moderation-modal-body > .alert-warning svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+
+/* ============================================================
+   FOOTER MODAL
+   ============================================================ */
+
+.moderation-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--mod-border);
+  background: #fbfcfb;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.moderation-page .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 65vh;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.moderation-page .loading-state h2 {
+  margin: 18px 0 6px;
+  color: var(--mod-text);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.moderation-page .loading-state p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--mod-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   SPINNER
+   ============================================================ */
+
+.moderation-page .spinner {
+  display: inline-block;
+  flex: 0 0 auto;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: moderationSpin 0.75s linear infinite;
+}
+
+.moderation-page .spinner-sm {
+  width: 15px;
+  height: 15px;
+}
+
+.moderation-page .spinner-lg {
+  width: 42px;
+  height: 42px;
+  border-width: 3px;
+  color: var(--mod-green);
+}
+
+
+/* ============================================================
+   FOCUS ACCESSIBILITÉ
+   ============================================================ */
+
+.moderation-page button:focus-visible,
+.moderation-page input:focus-visible,
+.moderation-page textarea:focus-visible {
+  outline: 3px solid rgba(22, 131, 74, 0.2);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes moderationSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moderationOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moderationModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ============================================================
+   TABLETTE
+   ============================================================ */
+
+@media (max-width: 1050px) {
+  .moderation-page .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moderation-item {
+    grid-template-columns: 165px minmax(0, 1fr);
+  }
+
+  .moderation-item-information {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moderation-item-information > div:nth-child(2) {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .moderation-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .moderation-search {
+    width: 100%;
+  }
+
+  .moderation-filters {
+    width: fit-content;
+  }
+}
+
+
+/* ============================================================
+   TABLETTE PETITE
+   ============================================================ */
+
+@media (max-width: 800px) {
+  .moderation-header {
+    padding: 28px 0;
+  }
+
+  .moderation-header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .moderation-header-inner > .btn {
+    width: 100%;
+  }
+
+  .moderation-item {
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-item-image {
+    min-height: 230px;
+  }
+
+  .moderation-item-image img,
+  .moderation-no-image {
+    min-height: 230px;
+    height: 230px;
+  }
+
+  .moderation-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .moderation-page .container {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .moderation-content {
+    padding-bottom: 40px;
+  }
+
+  .moderation-header {
+    padding: 24px 0;
+  }
+
+  .moderation-identity {
+    align-items: flex-start;
+    gap: 13px;
+  }
+
+  .moderation-icon {
+    flex-basis: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+  }
+
+  .moderation-header h1 {
+    font-size: 1.45rem;
+  }
+
+  .moderation-header p {
+    font-size: 0.84rem;
+  }
+
+  .moderation-page .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-stat-card {
+    min-height: 105px;
+  }
+
+  .moderation-toolbar {
+    padding: 10px;
+  }
+
+  .moderation-filters {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .moderation-filters button {
+    flex: 1 0 auto;
+  }
+
+  .moderation-list-header h2 {
+    font-size: 1.18rem;
+  }
+
+  .moderation-item-content {
+    padding: 17px;
+  }
+
+  .moderation-item-information {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .moderation-item-information > div {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .moderation-item-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .moderation-item-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .moderation-item-actions .btn {
+    width: 100%;
+  }
+
+  .moderation-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .moderation-modal {
+    width: 100%;
+    max-height: 94vh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .moderation-modal-header {
+    padding: 17px;
+  }
+
+  .moderation-modal-body {
+    padding: 18px;
+  }
+
+  .moderation-modal-footer {
+    padding: 13px 17px;
+  }
+
+  .moderation-detail-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .moderation-images > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moderation-images img {
+    height: 120px;
+  }
+}
+
+
+/* ============================================================
+   TRÈS PETIT MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .moderation-page .container {
+    width: min(100% - 18px, 1200px);
+  }
+
+  .moderation-identity {
+    flex-direction: column;
+  }
+
+  .moderation-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .moderation-stat-card {
+    padding: 16px;
+  }
+
+  .moderation-stat-icon {
+    flex-basis: 43px;
+    width: 43px;
+    height: 43px;
+  }
+
+  .moderation-item-information {
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-item-heading {
+    gap: 8px;
+  }
+
+  .moderation-item-heading h3 {
+    font-size: 1.05rem;
+  }
+
+  .moderation-item-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-modal-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .moderation-modal-footer .btn {
+    width: 100%;
+  }
+}
+
+
+/* ============================================================
+   RÉDUCTION DES ANIMATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .moderation-page *,
+  .moderation-page *::before,
+  .moderation-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

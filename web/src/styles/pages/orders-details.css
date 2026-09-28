@@ -1,0 +1,1411 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   PAGE : DÉTAILS D'UNE COMMANDE
+   Fichier : src/styles/pages/orders-details.css
+   ============================================================ */
+
+
+/* ============================================================
+   VARIABLES LOCALES
+   ============================================================ */
+
+.order-details-page {
+  --od-primary: #117642;
+  --od-primary-dark: #0d6035;
+  --od-primary-soft: #eef8f2;
+  --od-primary-border: #cfe5d8;
+
+  --od-text: #14201a;
+  --od-text-soft: #405047;
+  --od-muted: #7b8981;
+
+  --od-background: #f5f8f6;
+  --od-card: #ffffff;
+
+  --od-border: #e1e9e4;
+  --od-border-soft: #edf2ef;
+
+  --od-success: #18864b;
+  --od-success-soft: #edf8f1;
+  --od-success-border: #cce8d7;
+
+  --od-warning: #b7791f;
+  --od-warning-soft: #fff7e8;
+  --od-warning-border: #f0dfb8;
+
+  --od-danger: #c73535;
+  --od-danger-soft: #fff0f0;
+  --od-danger-border: #efcccc;
+
+  --od-info: #2868b2;
+  --od-info-soft: #edf5ff;
+  --od-info-border: #cfe1f5;
+
+  --od-neutral: #66736c;
+  --od-neutral-soft: #f1f4f2;
+
+  --od-shadow-sm:
+    0 2px 8px rgba(20, 32, 26, 0.05);
+
+  --od-shadow:
+    0 8px 24px rgba(20, 32, 26, 0.07);
+
+  --od-shadow-lg:
+    0 14px 35px rgba(20, 32, 26, 0.09);
+
+  --od-radius-sm: 8px;
+  --od-radius: 12px;
+  --od-radius-lg: 16px;
+
+  min-height: 100vh;
+
+  color: var(--od-text);
+  background: var(--od-background);
+}
+
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+.order-details-page *,
+.order-details-page *::before,
+.order-details-page *::after {
+  box-sizing: border-box;
+}
+
+.order-details-page button,
+.order-details-page input,
+.order-details-page select,
+.order-details-page textarea {
+  font: inherit;
+}
+
+.order-details-page button {
+  cursor: pointer;
+}
+
+.order-details-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.order-details-page a {
+  color: inherit;
+}
+
+.order-details-page svg {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+
+/* ============================================================
+   EN-TÊTE
+   ============================================================ */
+
+.order-details-page .order-details-header {
+  position: relative;
+
+  padding: 28px 0 38px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f4faf6 100%
+    );
+
+  border-bottom: 1px solid var(--od-border);
+
+  overflow: hidden;
+}
+
+.order-details-page .order-details-header::before {
+  content: "";
+
+  position: absolute;
+
+  top: -130px;
+  right: -90px;
+
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  background: rgba(17, 118, 66, 0.055);
+
+  pointer-events: none;
+}
+
+.order-details-page .order-details-header::after {
+  content: "";
+
+  position: absolute;
+
+  left: -110px;
+  bottom: -150px;
+
+  width: 300px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  background: rgba(17, 118, 66, 0.035);
+
+  pointer-events: none;
+}
+
+.order-details-page .order-details-header > .container {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ============================================================
+   BOUTON RETOUR
+   ============================================================ */
+
+.order-details-page .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding: 8px 13px;
+
+  color: var(--od-text-soft);
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.order-details-page .btn-ghost:hover {
+  color: var(--od-primary);
+
+  background: var(--od-primary-soft);
+
+  border-color: var(--od-primary-border);
+}
+
+.order-details-page .btn-ghost:active {
+  transform: translateY(1px);
+}
+
+
+/* ============================================================
+   TITRE DE LA PAGE
+   ============================================================ */
+
+.order-details-page .order-details-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-top: 28px;
+}
+
+.order-details-page .order-details-heading > div:first-child {
+  min-width: 0;
+}
+
+.order-details-page .section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 9px;
+
+  color: var(--od-primary);
+
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 800;
+
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.order-details-page .section-eyebrow::before {
+  content: "";
+
+  width: 22px;
+  height: 2px;
+
+  margin-right: 8px;
+
+  background: var(--od-primary);
+
+  border-radius: 999px;
+}
+
+.order-details-page .order-details-heading h1 {
+  margin: 0;
+
+  color: var(--od-text);
+
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.12;
+  font-weight: 800;
+
+  letter-spacing: -0.025em;
+}
+
+.order-details-page .order-details-heading p {
+  margin: 10px 0 0;
+
+  color: var(--od-text-soft);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.order-details-page .order-details-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  flex: 0 0 auto;
+}
+
+
+/* ============================================================
+   CONTENU
+   ============================================================ */
+
+.order-details-page .order-details-content {
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+
+
+/* ============================================================
+   ALERTES
+   ============================================================ */
+
+.order-details-page .alert {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  margin-bottom: 24px;
+
+  padding: 15px 17px;
+
+  border-radius: var(--od-radius);
+
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.order-details-page .alert > svg {
+  margin-top: 2px;
+
+  flex: 0 0 auto;
+}
+
+.order-details-page .alert > div {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 3px;
+}
+
+.order-details-page .alert strong {
+  font-weight: 800;
+}
+
+.order-details-page .alert span {
+  display: block;
+}
+
+.order-details-page .alert.alert-danger {
+  color: var(--od-danger);
+
+  background: var(--od-danger-soft);
+
+  border: 1px solid var(--od-danger-border);
+}
+
+.order-details-page .alert.alert-info {
+  color: var(--od-info);
+
+  background: var(--od-info-soft);
+
+  border: 1px solid var(--od-info-border);
+}
+
+.order-details-page .alert.alert-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  width: fit-content;
+
+  margin-top: 5px;
+
+  color: var(--od-primary);
+
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.order-details-page .alert.alert-info a:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   CARTES GÉNÉRALES
+   ============================================================ */
+
+.order-details-page .card {
+  background: var(--od-card);
+
+  border: 1px solid var(--od-border);
+  border-radius: var(--od-radius-lg);
+
+  box-shadow: var(--od-shadow-sm);
+}
+
+.order-details-page .card-header {
+  padding: 20px 22px 16px;
+
+  border-bottom: 1px solid var(--od-border-soft);
+}
+
+.order-details-page .card-header .section-eyebrow {
+  margin-bottom: 6px;
+}
+
+.order-details-page .card-header h2 {
+  margin: 0;
+
+  color: var(--od-text);
+
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.order-details-page .card-body {
+  padding: 20px 22px;
+}
+
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
+.order-details-page .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+
+  padding: 5px 11px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.order-details-page .badge-success {
+  color: var(--od-success);
+
+  background: var(--od-success-soft);
+
+  border: 1px solid var(--od-success-border);
+}
+
+.order-details-page .badge-warning {
+  color: var(--od-warning);
+
+  background: var(--od-warning-soft);
+
+  border: 1px solid var(--od-warning-border);
+}
+
+.order-details-page .badge-danger {
+  color: var(--od-danger);
+
+  background: var(--od-danger-soft);
+
+  border: 1px solid var(--od-danger-border);
+}
+
+.order-details-page .badge-neutral {
+  color: var(--od-neutral);
+
+  background: var(--od-neutral-soft);
+
+  border: 1px solid #dfe5e1;
+}
+
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
+
+.order-details-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 42px;
+
+  padding: 9px 15px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.order-details-page .btn:active {
+  transform: translateY(1px);
+}
+
+.order-details-page .btn:focus-visible {
+  outline: 3px solid rgba(17, 118, 66, 0.18);
+  outline-offset: 2px;
+}
+
+.order-details-page .btn.btn-sm {
+  min-height: 36px;
+
+  padding: 7px 12px;
+
+  font-size: 12px;
+}
+
+.order-details-page .btn.btn-primary {
+  color: #ffffff;
+
+  background: var(--od-primary);
+
+  border: 1px solid var(--od-primary);
+}
+
+.order-details-page .btn.btn-primary:hover {
+  color: #ffffff;
+
+  background: var(--od-primary-dark);
+
+  border-color: var(--od-primary-dark);
+
+  box-shadow:
+    0 5px 14px rgba(17, 118, 66, 0.18);
+}
+
+.order-details-page .btn.btn-outline {
+  color: var(--od-primary);
+
+  background: #ffffff;
+
+  border: 1px solid var(--od-primary-border);
+}
+
+.order-details-page .btn.btn-outline:hover {
+  color: var(--od-primary-dark);
+
+  background: var(--od-primary-soft);
+
+  border-color: var(--od-primary);
+}
+
+
+/* ============================================================
+   SUIVI DE COMMANDE
+   ============================================================ */
+
+.order-details-page .order-tracking-card {
+  margin-bottom: 22px;
+}
+
+.order-details-page .order-tracking {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 0;
+
+  padding: 4px 0 3px;
+}
+
+.order-details-page .order-tracking::before {
+  content: "";
+
+  position: absolute;
+
+  top: 22px;
+  left: 12.5%;
+  right: 12.5%;
+
+  height: 2px;
+
+  background: var(--od-border);
+
+  z-index: 0;
+}
+
+.order-details-page .order-tracking-step {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  text-align: center;
+
+  z-index: 1;
+}
+
+.order-details-page .order-tracking-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  margin-bottom: 11px;
+
+  color: var(--od-muted);
+
+  background: #ffffff;
+
+  border: 2px solid var(--od-border);
+
+  border-radius: 50%;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.order-details-page .order-tracking-step.completed
+  .order-tracking-marker {
+  color: #ffffff;
+
+  background: var(--od-primary);
+
+  border-color: var(--od-primary);
+}
+
+.order-details-page .order-tracking-step.current
+  .order-tracking-marker {
+  box-shadow:
+    0 0 0 5px rgba(17, 118, 66, 0.10);
+}
+
+.order-details-page .order-tracking-content {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 190px;
+
+  gap: 5px;
+}
+
+.order-details-page .order-tracking-content strong {
+  color: var(--od-text);
+
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.order-details-page .order-tracking-content span {
+  color: var(--od-muted);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   GRILLE PRINCIPALE
+   ============================================================ */
+
+.order-details-page .order-details-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 22px;
+
+  margin-bottom: 22px;
+}
+
+.order-details-page .order-details-grid > .card {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   RÉSUMÉ PRODUIT
+   ============================================================ */
+
+.order-details-page .order-product-summary {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+
+  padding: 14px;
+
+  background: #f9fbfa;
+
+  border: 1px solid var(--od-border-soft);
+
+  border-radius: 11px;
+}
+
+.order-details-page .order-product-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  flex: 0 0 52px;
+
+  color: var(--od-primary);
+
+  background: var(--od-primary-soft);
+
+  border: 1px solid var(--od-primary-border);
+
+  border-radius: 13px;
+}
+
+.order-details-page .order-product-summary > div:last-child {
+  min-width: 0;
+}
+
+.order-details-page .order-product-summary span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--od-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.order-details-page .order-product-summary strong {
+  display: block;
+
+  color: var(--od-text);
+
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   RÉSUMÉ QUANTITATIF
+   ============================================================ */
+
+.order-details-page .order-summary-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 1px;
+
+  overflow: hidden;
+
+  background: var(--od-border);
+
+  border: 1px solid var(--od-border);
+
+  border-radius: 10px;
+}
+
+.order-details-page .order-summary-grid > div {
+  min-width: 0;
+
+  padding: 13px;
+
+  background: #ffffff;
+}
+
+.order-details-page .order-summary-grid span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--od-muted);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.order-details-page .order-summary-grid strong {
+  display: block;
+
+  color: var(--od-text);
+
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   PERSONNES
+   ============================================================ */
+
+.order-details-page .order-person {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid var(--od-border-soft);
+}
+
+.order-details-page .order-person:first-child {
+  padding-top: 0;
+}
+
+.order-details-page .order-person:last-child {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.order-details-page .order-person-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  flex: 0 0 43px;
+
+  color: var(--od-primary);
+
+  background: var(--od-primary-soft);
+
+  border: 1px solid var(--od-primary-border);
+
+  border-radius: 11px;
+}
+
+.order-details-page .order-person > div:last-child {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 3px;
+}
+
+.order-details-page .order-person > div:last-child > span {
+  color: var(--od-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.order-details-page .order-person strong {
+  color: var(--od-text);
+
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+.order-details-page .order-person a {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  width: fit-content;
+
+  margin-top: 3px;
+
+  color: var(--od-primary);
+
+  font-size: 12px;
+  font-weight: 650;
+
+  text-decoration: none;
+}
+
+.order-details-page .order-person a:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   RÉCAPITULATIF FINANCIER
+   ============================================================ */
+
+.order-details-page .order-financial-summary {
+  margin-bottom: 22px;
+}
+
+.order-details-page .order-financial-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 10px 0;
+}
+
+.order-details-page .order-financial-line span {
+  color: var(--od-text-soft);
+
+  font-size: 13px;
+}
+
+.order-details-page .order-financial-line strong {
+  color: var(--od-text);
+
+  font-size: 13px;
+  font-weight: 750;
+
+  text-align: right;
+}
+
+.order-details-page .order-financial-divider {
+  height: 1px;
+
+  margin: 8px 0;
+
+  background: var(--od-border);
+}
+
+.order-details-page .order-financial-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 10px;
+}
+
+.order-details-page .order-financial-total span {
+  color: var(--od-text);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.order-details-page .order-financial-total strong {
+  color: var(--od-primary);
+
+  font-size: 23px;
+  line-height: 1.25;
+  font-weight: 850;
+
+  text-align: right;
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.order-details-page .order-details-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 24px;
+}
+
+.order-details-page .order-details-actions .btn {
+  min-width: 170px;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.order-details-page .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 65vh;
+
+  padding: 50px 20px;
+
+  text-align: center;
+}
+
+.order-details-page .loading-state h2 {
+  margin: 20px 0 7px;
+
+  color: var(--od-text);
+
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.order-details-page .loading-state p {
+  max-width: 450px;
+
+  margin: 0;
+
+  color: var(--od-muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   SPINNER
+   ============================================================ */
+
+.order-details-page .spinner {
+  display: inline-block;
+
+  border: 2px solid rgba(17, 118, 66, 0.18);
+
+  border-top-color: var(--od-primary);
+
+  border-radius: 50%;
+
+  animation:
+    order-details-spin 0.75s linear infinite;
+}
+
+.order-details-page .spinner-lg {
+  width: 42px;
+  height: 42px;
+
+  border-width: 3px;
+}
+
+.order-details-page .spinner-sm {
+  width: 15px;
+  height: 15px;
+
+  border-width: 2px;
+}
+
+@keyframes order-details-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   ÉTAT VIDE / ERREUR
+   ============================================================ */
+
+.order-details-page .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 430px;
+
+  margin-top: 30px;
+  margin-bottom: 60px;
+
+  padding: 50px 25px;
+
+  text-align: center;
+
+  background: var(--od-card);
+
+  border: 1px solid var(--od-border);
+
+  border-radius: var(--od-radius-lg);
+
+  box-shadow: var(--od-shadow-sm);
+}
+
+.order-details-page .empty-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin-bottom: 18px;
+
+  color: var(--od-danger);
+
+  background: var(--od-danger-soft);
+
+  border: 1px solid var(--od-danger-border);
+
+  border-radius: 50%;
+
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.order-details-page .empty-state-title {
+  margin: 0;
+
+  color: var(--od-text);
+
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.order-details-page .empty-state-description {
+  max-width: 500px;
+
+  margin: 10px auto 22px;
+
+  color: var(--od-text-soft);
+
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   FOCUS ACCESSIBLE
+   ============================================================ */
+
+.order-details-page a:focus-visible,
+.order-details-page button:focus-visible {
+  outline: 3px solid rgba(17, 118, 66, 0.18);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   TABLETTE
+   ============================================================ */
+
+@media (max-width: 950px) {
+
+  .order-details-page .order-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-details-page .order-tracking {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+  .order-details-page .order-tracking-content {
+    max-width: 150px;
+  }
+}
+
+
+/* ============================================================
+   TABLETTE PETITE
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .order-details-page .order-details-header {
+    padding: 20px 0 28px;
+  }
+
+  .order-details-page .order-details-heading {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 17px;
+
+    margin-top: 22px;
+  }
+
+  .order-details-page .order-details-heading-actions {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .order-details-page .order-details-heading h1 {
+    font-size: 30px;
+  }
+
+  .order-details-page .order-details-content {
+    padding-top: 22px;
+    padding-bottom: 40px;
+  }
+
+  .order-details-page .order-tracking {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+    padding-left: 7px;
+  }
+
+  .order-details-page .order-tracking::before {
+    top: 22px;
+    bottom: 22px;
+
+    left: 28px;
+    right: auto;
+
+    width: 2px;
+    height: auto;
+  }
+
+  .order-details-page .order-tracking-step {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 70px;
+
+    text-align: left;
+  }
+
+  .order-details-page .order-tracking-marker {
+    margin-bottom: 0;
+  }
+
+  .order-details-page .order-tracking-content {
+    max-width: none;
+  }
+
+  .order-details-page .order-tracking-content strong {
+    font-size: 13px;
+  }
+
+  .order-details-page .order-tracking-content span {
+    font-size: 11px;
+  }
+
+  .order-details-page .order-details-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .order-details-page .order-details-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+  .order-details-page .order-details-heading-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .order-details-page .order-details-heading-actions .badge {
+    align-self: flex-start;
+  }
+
+  .order-details-page .order-details-heading-actions .btn {
+    width: 100%;
+  }
+
+  .order-details-page .card-header {
+    padding: 17px 16px 14px;
+  }
+
+  .order-details-page .card-body {
+    padding: 17px 16px;
+  }
+
+  .order-details-page .card-header h2 {
+    font-size: 17px;
+  }
+
+  .order-details-page .order-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-details-page .order-product-summary {
+    padding: 12px;
+  }
+
+  .order-details-page .order-product-icon {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  .order-details-page .order-person {
+    padding: 13px 0;
+  }
+
+  .order-details-page .order-financial-total strong {
+    font-size: 20px;
+  }
+
+  .order-details-page .alert {
+    padding: 13px 14px;
+  }
+
+  .order-details-page .empty-state {
+    min-height: 340px;
+
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    padding: 35px 18px;
+  }
+}
+
+
+/* ============================================================
+   PETIT MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .order-details-page .order-details-heading h1 {
+    font-size: 26px;
+  }
+
+  .order-details-page .order-details-heading p {
+    font-size: 13px;
+  }
+
+  .order-details-page .order-financial-line,
+  .order-details-page .order-financial-total {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .order-details-page .order-financial-line strong,
+  .order-details-page .order-financial-total strong {
+    text-align: left;
+  }
+
+  .order-details-page .order-person-icon {
+    width: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+
+  .order-details-page .order-tracking-step {
+    grid-template-columns: 40px minmax(0, 1fr);
+
+    gap: 12px;
+  }
+
+  .order-details-page .order-tracking-marker {
+    width: 40px;
+    height: 40px;
+  }
+
+  .order-details-page .order-tracking::before {
+    left: 27px;
+  }
+}
+
+
+/* ============================================================
+   RÉDUCTION DES ANIMATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .order-details-page *,
+  .order-details-page *::before,
+  .order-details-page *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+  }
+}

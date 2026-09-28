@@ -1,0 +1,1852 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   HOME PAGE
+   Version professionnelle complète
+   Compatible avec Home.jsx
+   ============================================================ */
+
+/* ============================================================
+   1. VARIABLES
+   ============================================================ */
+
+.home-page {
+  --home-primary: #16803c;
+  --home-primary-dark: #0f6930;
+  --home-primary-light: #eaf7ee;
+
+  --home-secondary: #f0a928;
+  --home-secondary-dark: #d88e08;
+
+  --home-text: #173022;
+  --home-text-dark: #10251a;
+  --home-text-muted: #6b7b71;
+
+  --home-border: #dfe9e2;
+  --home-border-light: #edf2ee;
+
+  --home-background: #f6f9f7;
+  --home-white: #ffffff;
+
+  --home-danger: #c62828;
+  --home-danger-background: #fff2f2;
+
+  --home-shadow-sm:
+    0 5px 18px rgba(20, 65, 36, 0.07);
+
+  --home-shadow:
+    0 14px 38px rgba(20, 65, 36, 0.11);
+
+  --home-shadow-lg:
+    0 22px 60px rgba(20, 65, 36, 0.15);
+
+  --home-radius-sm: 10px;
+  --home-radius: 16px;
+  --home-radius-lg: 22px;
+
+  color: var(--home-text);
+  background: var(--home-white);
+}
+
+/* ============================================================
+   2. RESET LOCAL
+   ============================================================ */
+
+.home-page *,
+.home-page *::before,
+.home-page *::after {
+  box-sizing: border-box;
+}
+
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.home-page p {
+  margin-top: 0;
+}
+
+.home-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-page button,
+.home-page input {
+  font: inherit;
+}
+
+.home-page button {
+  border: 0;
+}
+
+.home-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* ============================================================
+   3. BOUTONS COMMUNS
+   ============================================================ */
+
+.home-primary-button,
+.home-secondary-button,
+.home-outline-link,
+.home-text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.home-primary-button {
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 10px;
+  background:
+    linear-gradient(
+      135deg,
+      var(--home-primary),
+      var(--home-primary-dark)
+    );
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow:
+    0 8px 20px rgba(22, 128, 60, 0.18);
+}
+
+.home-primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 26px rgba(22, 128, 60, 0.24);
+}
+
+.home-secondary-button {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.home-secondary-button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.home-outline-link {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid var(--home-border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--home-primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.home-outline-link:hover {
+  border-color: var(--home-primary);
+  background: var(--home-primary-light);
+}
+
+.home-text-link {
+  flex: 0 0 auto;
+  color: var(--home-primary);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.home-text-link:hover {
+  color: var(--home-primary-dark);
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   4. SLIDER PRINCIPAL
+   ============================================================ */
+
+.home-slider {
+  position: relative;
+  height: 535px;
+  overflow: hidden;
+  background: #12271a;
+}
+
+.home-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 650ms ease,
+    visibility 650ms ease;
+}
+
+.home-slide-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.home-slide-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 28, 14, 0.88) 0%,
+      rgba(5, 28, 14, 0.68) 38%,
+      rgba(5, 28, 14, 0.25) 72%,
+      rgba(5, 28, 14, 0.08) 100%
+    );
+}
+
+.home-slide-inner {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.home-slide-content {
+  width: min(620px, 100%);
+  padding: 30px 0 70px;
+  color: #ffffff;
+}
+
+.home-slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 18px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.home-slide-copy h1 {
+  max-width: 680px;
+  margin-bottom: 17px;
+  color: #ffffff;
+  font-size: clamp(34px, 4.3vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  font-weight: 900;
+}
+
+.home-slide-copy p {
+  max-width: 590px;
+  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.home-slide-button {
+  min-height: 47px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--home-primary-dark);
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.home-slide-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ============================================================
+   5. CONTROLES SLIDER
+   ============================================================ */
+
+.home-slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.24);
+  color: #ffffff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-slider-arrow:hover {
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.home-slider-arrow-left {
+  left: 20px;
+}
+
+.home-slider-arrow-right {
+  right: 20px;
+}
+
+/* ============================================================
+   6. SLIDER BAS
+   ============================================================ */
+
+.home-slider-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 23px;
+  z-index: 7;
+  width: min(1180px, calc(100% - 40px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateX(-50%);
+}
+
+.home-slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 90px);
+  overflow: hidden;
+}
+
+.home-slider-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  cursor: pointer;
+  transition:
+    width 200ms ease,
+    background-color 200ms ease;
+}
+
+.home-slider-dot:hover {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.home-slider-dot-active {
+  width: 28px;
+  background: #ffffff;
+}
+
+.home-slider-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.home-slider-counter strong {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+/* ============================================================
+   7. RECHERCHE
+   ============================================================ */
+
+.home-hero-bottom {
+  position: relative;
+  z-index: 10;
+  margin-top: -42px;
+}
+
+.home-hero-search-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.5fr;
+  align-items: center;
+  gap: 28px;
+  padding: 21px 23px;
+  border: 1px solid var(--home-border);
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow);
+}
+
+.home-search-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.home-search-intro-icon {
+  width: 45px;
+  height: 45px;
+  flex: 0 0 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+}
+
+.home-search-intro > div:last-child {
+  min-width: 0;
+}
+
+.home-search-intro strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--home-text);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.home-search-intro span {
+  display: block;
+  color: var(--home-text-muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.home-search {
+  display: flex;
+  align-items: stretch;
+  gap: 9px;
+}
+
+.home-search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.home-search-input-wrapper > svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  z-index: 2;
+  color: #89988f;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.home-search-input-wrapper input {
+  width: 100%;
+  height: 47px;
+  padding: 0 43px;
+  border: 1px solid var(--home-border);
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: var(--home-text);
+  font-size: 13px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.home-search-input-wrapper input::placeholder {
+  color: #9aa8a0;
+}
+
+.home-search-input-wrapper input:focus {
+  border-color: var(--home-primary);
+  box-shadow:
+    0 0 0 3px rgba(22, 128, 60, 0.09);
+}
+
+.home-search-button {
+  min-width: 120px;
+  padding: 0 18px;
+  border-radius: 10px;
+  background: var(--home-primary);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-search-button:hover {
+  background: var(--home-primary-dark);
+  transform: translateY(-1px);
+}
+
+.home-search-loading {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #dce9df;
+  border-top-color: var(--home-primary);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  animation: homeSpin 700ms linear infinite;
+}
+
+/* ============================================================
+   8. SUGGESTIONS RECHERCHE
+   ============================================================ */
+
+.home-search-suggestions {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  overflow: hidden;
+  border: 1px solid var(--home-border);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow);
+}
+
+.home-search-suggestions button {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--home-border-light);
+  background: #ffffff;
+  color: var(--home-text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.home-search-suggestions button:last-child {
+  border-bottom: 0;
+}
+
+.home-search-suggestions button:hover {
+  background: var(--home-primary-light);
+  color: var(--home-primary-dark);
+}
+
+.home-search-suggestions button svg {
+  flex: 0 0 auto;
+  color: var(--home-primary);
+}
+
+/* ============================================================
+   9. INTRODUCTION
+   ============================================================ */
+
+.home-market-section {
+  padding: 55px 0 24px;
+}
+
+.home-market-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 28px;
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-radius-lg);
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f7fbf8
+    );
+  box-shadow: var(--home-shadow-sm);
+}
+
+.home-market-icon {
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+}
+
+.home-market-logo {
+  overflow: hidden;
+}
+
+.home-market-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.home-section-eyebrow {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: var(--home-primary);
+  font-size: 10px;
+  line-height: 1.3;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.home-market-card h2 {
+  margin-bottom: 8px;
+  color: var(--home-text-dark);
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  font-weight: 900;
+}
+
+.home-market-card p {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: var(--home-text-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   10. STATISTIQUES
+   ============================================================ */
+
+.home-stats-section {
+  padding: 16px 0 35px;
+}
+
+.home-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.home-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--home-border);
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow-sm);
+}
+
+.home-stat-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+}
+
+.home-stat-card strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--home-text-dark);
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.home-stat-card span {
+  display: block;
+  color: var(--home-text-muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   11. SECTIONS GÉNÉRALES
+   ============================================================ */
+
+.home-families-section,
+.home-products-section,
+.home-trust-section,
+.home-how-section {
+  padding: 55px 0;
+}
+
+.home-families-section {
+  background: #ffffff;
+}
+
+.home-products-section {
+  background: var(--home-background);
+}
+
+.home-trust-section {
+  background: #ffffff;
+}
+
+.home-how-section {
+  background: var(--home-background);
+}
+
+/* ============================================================
+   12. TITRES DE SECTIONS
+   ============================================================ */
+
+.home-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.home-section-header > div:first-child {
+  min-width: 0;
+}
+
+.home-section-header h2 {
+  margin-bottom: 7px;
+  color: var(--home-text-dark);
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+  font-weight: 900;
+}
+
+.home-section-header p {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: var(--home-text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.home-section-header-centered {
+  justify-content: center;
+  text-align: center;
+}
+
+.home-section-header-centered > div {
+  max-width: 700px;
+}
+
+.home-section-header-centered p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ============================================================
+   13. FAMILLES DE PRODUITS
+   ============================================================ */
+
+.home-families-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+
+.home-family-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--home-border);
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow-sm);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.home-family-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(22, 128, 60, 0.30);
+  box-shadow: var(--home-shadow);
+}
+
+/* Image de famille */
+
+.home-family-image {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      #eaf8ef,
+      #f6faf7
+    );
+}
+
+.home-family-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 35, 16, 0) 25%,
+      rgba(3, 35, 16, 0.40) 100%
+    );
+}
+
+.home-family-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 500ms ease,
+    filter 250ms ease;
+}
+
+.home-family-card:hover .home-family-image img {
+  transform: scale(1.07);
+  filter: saturate(1.05);
+}
+
+/* Contenu famille */
+
+.home-family-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 48px 15px 16px;
+}
+
+.home-family-content h3 {
+  overflow: hidden;
+  margin: 0 0 4px;
+  color: var(--home-text);
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 850;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-family-content p {
+  overflow: hidden;
+  margin: 0;
+  color: var(--home-text-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Flèche */
+
+.home-family-arrow {
+  position: absolute;
+  right: 14px;
+  bottom: 13px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f4f8f5;
+  color: var(--home-text-muted);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-family-card:hover .home-family-arrow {
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   14. PRODUITS
+   ============================================================ */
+
+.home-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.home-product-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--home-border);
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow-sm);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.home-product-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(22, 128, 60, 0.28);
+  box-shadow: var(--home-shadow);
+}
+
+/* Image produit */
+
+.home-product-image {
+  position: relative;
+  height: 205px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      #edf7f0,
+      #f7faf8
+    );
+}
+
+.home-product-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform 450ms ease;
+}
+
+.home-product-card:hover .home-product-image img {
+  transform: scale(1.05);
+}
+
+.home-product-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--home-primary);
+  background:
+    radial-gradient(
+      circle at center,
+      #e9f6ed,
+      #f7faf8
+    );
+}
+
+.home-product-image-error {
+  display: grid;
+  place-items: center;
+}
+
+.home-product-image-error::before {
+  content: "Image indisponible";
+  color: var(--home-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Contenu produit */
+
+.home-product-content {
+  min-width: 0;
+  padding: 15px 16px 16px;
+}
+
+.home-product-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  color: var(--home-primary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.home-product-location svg {
+  flex: 0 0 auto;
+}
+
+.home-product-location span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-product-content h3 {
+  overflow: hidden;
+  margin: 0 0 7px;
+  color: var(--home-text-dark);
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 850;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.home-product-content p {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 36px;
+  margin: 0 0 14px;
+  color: var(--home-text-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Pied produit */
+
+.home-product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--home-border-light);
+}
+
+.home-product-footer strong {
+  color: var(--home-primary-dark);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.home-product-footer span {
+  max-width: 45%;
+  overflow: hidden;
+  color: var(--home-text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   15. CONFIANCE
+   ============================================================ */
+
+.home-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+
+.home-trust-card {
+  padding: 23px 20px;
+  border: 1px solid var(--home-border);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow-sm);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.home-trust-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--home-shadow);
+}
+
+.home-trust-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 17px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+}
+
+.home-trust-card h3 {
+  margin-bottom: 8px;
+  color: var(--home-text-dark);
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 850;
+}
+
+.home-trust-card p {
+  margin-bottom: 0;
+  color: var(--home-text-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   16. COMMENT ÇA MARCHE
+   ============================================================ */
+
+.home-how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+
+.home-how-card {
+  position: relative;
+  padding: 26px 21px 22px;
+  border: 1px solid var(--home-border);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: var(--home-shadow-sm);
+}
+
+.home-how-number {
+  position: absolute;
+  top: 17px;
+  right: 18px;
+  color: #d9e8dd;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.home-how-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+}
+
+.home-how-card h3 {
+  margin-bottom: 8px;
+  color: var(--home-text-dark);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 850;
+}
+
+.home-how-card p {
+  margin-bottom: 0;
+  color: var(--home-text-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   17. ESPACE VENDEUR
+   ============================================================ */
+
+.home-seller-section {
+  padding: 55px 0;
+  background: #ffffff;
+}
+
+.home-seller-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 30px;
+  border-radius: 21px;
+  background:
+    linear-gradient(
+      135deg,
+      #0f6930,
+      #16803c
+    );
+  color: #ffffff;
+  box-shadow: var(--home-shadow-lg);
+}
+
+.home-seller-icon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.11);
+  color: #ffffff;
+}
+
+.home-seller-content {
+  min-width: 0;
+}
+
+.home-seller-content .home-section-eyebrow {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.home-seller-content h2 {
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.home-seller-content p {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   18. CTA FINAL
+   ============================================================ */
+
+.home-final-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 85px 0;
+  background:
+    linear-gradient(
+      135deg,
+      #092515,
+      #0e5e2c
+    );
+}
+
+.home-final-cta::before,
+.home-final-cta::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.home-final-cta::before {
+  width: 380px;
+  height: 380px;
+  top: -180px;
+  right: -90px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.home-final-cta::after {
+  width: 300px;
+  height: 300px;
+  bottom: -180px;
+  left: -100px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.home-final-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-final-cta .home-section-eyebrow {
+  color: #a8dfb8;
+}
+
+.home-final-cta h2 {
+  margin-bottom: 16px;
+  color: #ffffff;
+  font-size: clamp(31px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -1px;
+  font-weight: 900;
+}
+
+.home-final-cta p {
+  max-width: 600px;
+  margin: 0 auto 26px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.home-final-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   19. CHARGEMENT
+   ============================================================ */
+
+.home-loading {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px dashed var(--home-border);
+  border-radius: 15px;
+  background: #ffffff;
+  color: var(--home-text-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-spinner {
+  width: 21px;
+  height: 21px;
+  border: 2px solid #dce9df;
+  border-top-color: var(--home-primary);
+  border-radius: 50%;
+  animation: homeSpin 700ms linear infinite;
+}
+
+@keyframes homeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   20. ERREUR
+   ============================================================ */
+
+.home-error {
+  padding: 17px;
+  border: 1px solid rgba(198, 40, 40, 0.15);
+  border-radius: 13px;
+  background: var(--home-danger-background);
+  color: var(--home-danger);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   21. ÉTAT VIDE
+   ============================================================ */
+
+.home-empty {
+  min-height: 180px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--home-border);
+  border-radius: 16px;
+  background: #ffffff;
+  color: var(--home-text-muted);
+  text-align: center;
+}
+
+.home-empty svg {
+  margin-bottom: 10px;
+  color: var(--home-primary);
+}
+
+.home-empty h3 {
+  margin-bottom: 5px;
+  color: var(--home-text);
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.home-empty p {
+  margin-bottom: 0;
+  font-size: 11px;
+}
+
+/* ============================================================
+   22. SKELETON / COMPATIBILITÉ
+   ============================================================ */
+
+.home-skeleton {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      #edf2ee 25%,
+      #f7faf8 50%,
+      #edf2ee 75%
+    );
+  background-size: 200% 100%;
+  animation: homeSkeleton 1.3s linear infinite;
+}
+
+.home-skeleton-card {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.home-family-card.home-skeleton-card {
+  overflow: hidden;
+}
+
+.home-family-card
+.home-skeleton.home-family-image {
+  height: 170px;
+}
+
+.home-product-card.home-skeleton-card {
+  min-height: 340px;
+}
+
+.home-product-card
+.home-skeleton.home-product-image {
+  height: 205px;
+}
+
+@keyframes homeSkeleton {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================================
+   23. FOCUS ACCESSIBILITÉ
+   ============================================================ */
+
+.home-page
+a:focus-visible,
+.home-page
+button:focus-visible,
+.home-page
+input:focus-visible {
+  outline: 3px solid rgba(22, 128, 60, 0.25);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   24. TABLETTE LARGE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .home-container {
+    width: min(100% - 32px, 1000px);
+  }
+
+  .home-families-grid,
+  .home-products-grid,
+  .home-trust-grid,
+  .home-how-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home-slider {
+    height: 500px;
+  }
+
+  .home-slide-copy h1 {
+    font-size: 44px;
+  }
+
+  .home-hero-search-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* ============================================================
+   25. TABLETTE
+   ============================================================ */
+
+@media (max-width: 850px) {
+  .home-slider {
+    height: 475px;
+  }
+
+  .home-slide-content {
+    padding-bottom: 65px;
+  }
+
+  .home-slide-copy h1 {
+    max-width: 580px;
+    font-size: 39px;
+  }
+
+  .home-slide-copy p {
+    max-width: 520px;
+    font-size: 13px;
+  }
+
+  .home-market-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .home-market-card .home-text-link {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .home-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-families-grid,
+  .home-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-trust-grid,
+  .home-how-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-seller-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .home-seller-card .home-primary-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* ============================================================
+   26. MOBILE
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .home-container {
+    width: calc(100% - 24px);
+  }
+
+  .home-slider {
+    height: 520px;
+  }
+
+  .home-slide-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(5, 28, 14, 0.87),
+        rgba(5, 28, 14, 0.55)
+      );
+  }
+
+  .home-slide-inner {
+    align-items: flex-end;
+  }
+
+  .home-slide-content {
+    width: 100%;
+    padding: 30px 0 90px;
+  }
+
+  .home-slide-copy h1 {
+    font-size: 34px;
+    letter-spacing: -0.8px;
+  }
+
+  .home-slide-copy p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .home-slider-arrow {
+    top: auto;
+    bottom: 60px;
+    width: 38px;
+    height: 38px;
+    transform: none;
+  }
+
+  .home-slider-arrow-left {
+    left: 12px;
+  }
+
+  .home-slider-arrow-right {
+    right: 12px;
+  }
+
+  .home-slider-bottom {
+    bottom: 17px;
+    width: calc(100% - 24px);
+  }
+
+  .home-hero-bottom {
+    margin-top: -25px;
+  }
+
+  .home-hero-search-card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .home-search {
+    flex-direction: column;
+  }
+
+  .home-search-button {
+    min-height: 45px;
+  }
+
+  .home-market-section,
+  .home-families-section,
+  .home-products-section,
+  .home-trust-section,
+  .home-how-section,
+  .home-seller-section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+
+  .home-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .home-section-header h2 {
+    font-size: 24px;
+  }
+
+  .home-market-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .home-market-card .home-text-link {
+    grid-column: auto;
+  }
+
+  .home-families-grid,
+  .home-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .home-family-image {
+    height: 190px;
+  }
+
+  .home-product-image {
+    height: 185px;
+  }
+
+  .home-trust-grid,
+  .home-how-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .home-seller-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .home-seller-card .home-primary-button {
+    grid-column: auto;
+    justify-self: start;
+  }
+
+  .home-final-cta {
+    padding: 65px 0;
+  }
+}
+
+/* ============================================================
+   27. PETIT MOBILE
+   ============================================================ */
+
+@media (max-width: 430px) {
+  .home-container {
+    width: calc(100% - 20px);
+  }
+
+  .home-slider {
+    height: 500px;
+  }
+
+  .home-slide-copy h1 {
+    font-size: 30px;
+  }
+
+  .home-slide-copy p {
+    font-size: 12px;
+  }
+
+  .home-slide-button {
+    width: 100%;
+  }
+
+  .home-slider-dots {
+    max-width: calc(100% - 70px);
+  }
+
+  .home-slider-dot:nth-child(n + 8) {
+    display: none;
+  }
+
+  .home-search-intro {
+    align-items: flex-start;
+  }
+
+  .home-search-intro-icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .home-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+
+  .home-stat-card {
+    padding: 13px;
+    gap: 8px;
+  }
+
+  .home-stat-icon {
+    width: 37px;
+    height: 37px;
+    flex-basis: 37px;
+  }
+
+  .home-stat-card strong {
+    font-size: 17px;
+  }
+
+  .home-stat-card span {
+    font-size: 9px;
+  }
+
+  .home-families-grid,
+  .home-products-grid,
+  .home-trust-grid,
+  .home-how-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-family-image {
+    height: 175px;
+  }
+
+  .home-product-image {
+    height: 210px;
+  }
+
+  .home-section-header h2 {
+    font-size: 22px;
+  }
+
+  .home-seller-content h2 {
+    font-size: 22px;
+  }
+
+  .home-final-cta h2 {
+    font-size: 30px;
+  }
+
+  .home-final-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-final-actions a {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   28. TRÈS PETITS ÉCRANS
+   ============================================================ */
+
+@media (max-width: 360px) {
+  .home-slider {
+    height: 480px;
+  }
+
+  .home-slide-copy h1 {
+    font-size: 27px;
+  }
+
+  .home-slide-badge {
+    font-size: 9px;
+  }
+
+  .home-market-card {
+    padding: 18px;
+  }
+
+  .home-market-icon {
+    width: 62px;
+    height: 62px;
+    flex-basis: 62px;
+  }
+
+  .home-family-image {
+    height: 160px;
+  }
+
+  .home-product-image {
+    height: 190px;
+  }
+}
+
+/* ============================================================
+   29. RÉDUCTION DES ANIMATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

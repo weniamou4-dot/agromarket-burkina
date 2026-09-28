@@ -1,0 +1,1403 @@
+/* ============================================================
+   AGROMARKET BURKINA
+   PAGE — HISTORIQUE DE MODÉRATION
+   CSS PROFESSIONNEL / RESPONSIVE
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES LOCALES
+   ============================================================ */
+
+.history-page {
+  --history-primary: #117642;
+  --history-primary-dark: #0d6035;
+  --history-primary-light: #eef8f2;
+
+  --history-text: #14201a;
+  --history-text-soft: #405047;
+  --history-muted: #78867e;
+
+  --history-border: #e1e9e4;
+  --history-border-soft: #edf2ef;
+
+  --history-background: #f5f8f6;
+  --history-card: #ffffff;
+
+  --history-success: #18864b;
+  --history-success-bg: #edf9f2;
+
+  --history-danger: #c73535;
+  --history-danger-bg: #fff1f1;
+
+  --history-warning: #a66b13;
+  --history-warning-bg: #fff8e8;
+
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 32px;
+
+  background: var(--history-background);
+
+  color: var(--history-text);
+
+  box-sizing: border-box;
+}
+
+.history-page *,
+.history-page *::before,
+.history-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   2. EN-TÊTE
+   ============================================================ */
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  max-width: 1500px;
+  margin: 0 auto 28px;
+}
+
+.history-title-area {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: 0;
+}
+
+.history-title-icon {
+  flex: 0 0 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  color: var(--history-primary);
+
+  background: var(--history-primary-light);
+
+  border: 1px solid #d9ebdf;
+  border-radius: 15px;
+}
+
+.history-title-icon svg {
+  width: 28px;
+  height: 28px;
+
+  fill: currentColor;
+}
+
+.history-title-area h1 {
+  margin: 0;
+
+  color: var(--history-text);
+
+  font-size: 29px;
+  font-weight: 800;
+
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.history-title-area p {
+  max-width: 700px;
+
+  margin: 7px 0 0;
+
+  color: var(--history-muted);
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   3. BOUTON ACTUALISER
+   ============================================================ */
+
+.history-refresh-button {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 42px;
+
+  padding: 10px 16px;
+
+  color: var(--history-primary-dark);
+
+  background: #ffffff;
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.history-refresh-button svg {
+  width: 17px;
+  height: 17px;
+
+  fill: currentColor;
+}
+
+.history-refresh-button:hover:not(:disabled) {
+  background: var(--history-primary-light);
+
+  border-color: #c9dfd1;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 14px rgba(17, 118, 66, 0.08);
+}
+
+.history-refresh-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.history-refresh-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   4. ANIMATION ACTUALISATION
+   ============================================================ */
+
+.history-refresh-button:disabled svg {
+  animation: history-spin 0.9s linear infinite;
+}
+
+@keyframes history-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   5. STATISTIQUES
+   ============================================================ */
+
+.history-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 14px;
+
+  max-width: 1500px;
+
+  margin: 0 auto 22px;
+}
+
+.history-stat-card {
+  position: relative;
+
+  min-width: 0;
+
+  padding: 19px 20px;
+
+  background: var(--history-card);
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 4px 16px rgba(20, 45, 30, 0.035);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.history-stat-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: var(--history-primary);
+}
+
+.history-stat-card:nth-child(2)::before {
+  background: #3177b7;
+}
+
+.history-stat-card:nth-child(3)::before {
+  background: var(--history-success);
+}
+
+.history-stat-card:nth-child(4)::before {
+  background: var(--history-danger);
+}
+
+.history-stat-card:nth-child(5)::before {
+  background: var(--history-warning);
+}
+
+.history-stat-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #d3e1d9;
+
+  box-shadow:
+    0 8px 22px rgba(20, 45, 30, 0.06);
+}
+
+.history-stat-card span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--history-muted);
+
+  font-size: 12px;
+  font-weight: 650;
+
+  line-height: 1.4;
+}
+
+.history-stat-card strong {
+  display: block;
+
+  color: var(--history-text);
+
+  font-size: 27px;
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+
+/* ============================================================
+   6. ALERTES
+   ============================================================ */
+
+.history-page .alert {
+  display: flex;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto 20px;
+
+  padding: 13px 16px;
+
+  border-radius: 11px;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.history-page .alert-danger {
+  color: #9e2828;
+
+  background: var(--history-danger-bg);
+
+  border: 1px solid #f0cccc;
+}
+
+
+/* ============================================================
+   7. SECTION FILTRES
+   ============================================================ */
+
+.history-filters-section {
+  max-width: 1500px;
+
+  margin: 0 auto 22px;
+
+  padding: 21px;
+
+  background: var(--history-card);
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 4px 16px rgba(20, 45, 30, 0.03);
+}
+
+
+/* ============================================================
+   8. FORMULAIRE FILTRES
+   ============================================================ */
+
+.history-filters {
+  display: grid;
+
+  grid-template-columns:
+    minmax(150px, 1fr)
+    minmax(150px, 1fr)
+    minmax(200px, 1.25fr)
+    auto;
+
+  align-items: end;
+
+  gap: 15px;
+}
+
+.history-filters .form-group {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   9. LABELS
+   ============================================================ */
+
+.history-filters .form-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--history-text-soft);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   10. CHAMPS
+   ============================================================ */
+
+.history-filters .form-input {
+  display: block;
+
+  width: 100%;
+  min-height: 43px;
+
+  padding: 10px 12px;
+
+  color: var(--history-text);
+
+  background: #ffffff;
+
+  border: 1px solid #dbe4df;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font: inherit;
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.history-filters .form-input::placeholder {
+  color: #a0aaa4;
+}
+
+.history-filters .form-input:hover {
+  border-color: #cbd8d1;
+}
+
+.history-filters .form-input:focus {
+  background: #ffffff;
+
+  border-color: var(--history-primary);
+
+  box-shadow:
+    0 0 0 3px rgba(17, 118, 66, 0.1);
+}
+
+.history-filters select.form-input {
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   11. ACTIONS DES FILTRES
+   ============================================================ */
+
+.history-filter-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  min-height: 43px;
+}
+
+
+/* ============================================================
+   12. BOUTON RECHERCHE
+   ============================================================ */
+
+.history-search-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 43px;
+
+  padding: 10px 16px;
+
+  color: #ffffff;
+
+  background: var(--history-primary);
+
+  border: 1px solid var(--history-primary);
+
+  border-radius: 9px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.history-search-button svg {
+  width: 17px;
+  height: 17px;
+
+  fill: currentColor;
+}
+
+.history-search-button:hover:not(:disabled) {
+  background: var(--history-primary-dark);
+
+  border-color: var(--history-primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 13px rgba(17, 118, 66, 0.18);
+}
+
+.history-search-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.history-search-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   13. BOUTON RÉINITIALISER
+   ============================================================ */
+
+.history-reset-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 43px;
+
+  padding: 10px 14px;
+
+  color: var(--history-text-soft);
+
+  background: #ffffff;
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 9px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.history-reset-button:hover:not(:disabled) {
+  color: var(--history-text);
+
+  background: #f7faf8;
+
+  border-color: #cbd8d1;
+}
+
+.history-reset-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   14. SECTION TABLEAU
+   ============================================================ */
+
+.history-table-section {
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  background: var(--history-card);
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 4px 16px rgba(20, 45, 30, 0.03);
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   15. EN-TÊTE DU TABLEAU
+   ============================================================ */
+
+.history-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 20px 21px;
+
+  border-bottom: 1px solid var(--history-border-soft);
+}
+
+.history-table-header h2 {
+  margin: 0;
+
+  color: var(--history-text);
+
+  font-size: 17px;
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+.history-table-header p {
+  margin: 5px 0 0;
+
+  color: var(--history-muted);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   16. CHARGEMENT
+   ============================================================ */
+
+.history-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 260px;
+
+  padding: 30px;
+
+  color: var(--history-muted);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.history-loading::before {
+  content: "";
+
+  width: 18px;
+  height: 18px;
+
+  margin-right: 10px;
+
+  border: 2px solid #dce8e0;
+  border-top-color: var(--history-primary);
+
+  border-radius: 50%;
+
+  animation: history-loading-spin 0.8s linear infinite;
+}
+
+@keyframes history-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   17. ÉTAT VIDE
+   ============================================================ */
+
+.history-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 280px;
+
+  padding: 35px 20px;
+
+  text-align: center;
+}
+
+.history-empty svg {
+  width: 43px;
+  height: 43px;
+
+  margin-bottom: 15px;
+
+  fill: var(--history-primary);
+
+  opacity: 0.75;
+}
+
+.history-empty h3 {
+  margin: 0;
+
+  color: var(--history-text);
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.history-empty p {
+  max-width: 440px;
+
+  margin: 7px 0 0;
+
+  color: var(--history-muted);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   18. WRAPPER DU TABLEAU
+   ============================================================ */
+
+.history-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c8d5cd transparent;
+}
+
+.history-table-wrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.history-table-wrapper::-webkit-scrollbar-track {
+  background: #f5f8f6;
+}
+
+.history-table-wrapper::-webkit-scrollbar-thumb {
+  background: #c8d5cd;
+
+  border-radius: 999px;
+}
+
+
+/* ============================================================
+   19. TABLEAU
+   ============================================================ */
+
+.history-table {
+  width: 100%;
+
+  min-width: 1050px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  color: var(--history-text);
+
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   20. EN-TÊTE DES COLONNES
+   ============================================================ */
+
+.history-table thead th {
+  padding: 13px 14px;
+
+  color: #637169;
+
+  background: #f7faf8;
+
+  border-bottom: 1px solid var(--history-border);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.055em;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.history-table thead th:first-child {
+  padding-left: 21px;
+}
+
+.history-table thead th:last-child {
+  padding-right: 21px;
+}
+
+
+/* ============================================================
+   21. CELLULES
+   ============================================================ */
+
+.history-table tbody td {
+  padding: 15px 14px;
+
+  color: var(--history-text-soft);
+
+  border-bottom: 1px solid var(--history-border-soft);
+
+  line-height: 1.5;
+
+  vertical-align: middle;
+}
+
+.history-table tbody td:first-child {
+  padding-left: 21px;
+
+  color: var(--history-text);
+
+  font-weight: 750;
+}
+
+.history-table tbody td:last-child {
+  padding-right: 21px;
+}
+
+.history-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.history-table tbody tr:hover {
+  background: #fafcfb;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+
+/* ============================================================
+   22. COLONNES IMPORTANTES
+   ============================================================ */
+
+.history-table tbody td:nth-child(1) {
+  white-space: nowrap;
+}
+
+.history-table tbody td:nth-child(2) {
+  color: var(--history-muted);
+
+  white-space: nowrap;
+}
+
+.history-table tbody td:nth-child(3),
+.history-table tbody td:nth-child(4) {
+  max-width: 220px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.history-table tbody td:nth-child(6),
+.history-table tbody td:nth-child(7) {
+  color: var(--history-muted);
+
+  white-space: nowrap;
+}
+
+.history-table tbody td:nth-child(8) {
+  max-width: 260px;
+
+  color: var(--history-muted);
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   23. BADGES D'ACTION
+   ============================================================ */
+
+.history-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 27px;
+
+  padding: 5px 9px;
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+
+/* Soumise */
+
+.history-action-pending {
+  color: #946316;
+
+  background: var(--history-warning-bg);
+
+  border-color: #f0dfb7;
+}
+
+
+/* Approuvée */
+
+.history-action-success {
+  color: #176b3d;
+
+  background: var(--history-success-bg);
+
+  border-color: #c9e8d5;
+}
+
+
+/* Refusée */
+
+.history-action-danger {
+  color: #a72c2c;
+
+  background: var(--history-danger-bg);
+
+  border-color: #f0cccc;
+}
+
+
+/* Remise en modération */
+
+.history-action-warning {
+  color: #76551d;
+
+  background: #fff7e6;
+
+  border-color: #eedcb4;
+}
+
+
+/* Action inconnue */
+
+.history-action:not(
+  .history-action-pending,
+  .history-action-success,
+  .history-action-danger,
+  .history-action-warning
+) {
+  color: #59665f;
+
+  background: #f1f4f2;
+
+  border-color: #dde5e0;
+}
+
+
+/* ============================================================
+   24. PAGINATION
+   ============================================================ */
+
+.history-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  max-width: 1500px;
+
+  margin: 18px auto 0;
+
+  padding: 4px 0;
+}
+
+.history-pagination > span {
+  min-width: 115px;
+
+  color: var(--history-muted);
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+.history-pagination > span strong {
+  color: var(--history-text);
+
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   25. BOUTONS PAGINATION
+   ============================================================ */
+
+.history-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  min-height: 38px;
+
+  padding: 8px 13px;
+
+  color: var(--history-text-soft);
+
+  background: #ffffff;
+
+  border: 1px solid var(--history-border);
+
+  border-radius: 9px;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.history-page-button svg {
+  width: 17px;
+  height: 17px;
+
+  fill: currentColor;
+}
+
+.history-page-button:hover:not(:disabled) {
+  color: var(--history-primary-dark);
+
+  background: var(--history-primary-light);
+
+  border-color: #c9dfd1;
+
+  transform: translateY(-1px);
+}
+
+.history-page-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.history-page-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   26. RETOUR AU DASHBOARD
+   ============================================================ */
+
+.history-back {
+  display: flex;
+  justify-content: center;
+
+  max-width: 1500px;
+
+  margin: 20px auto 0;
+
+  padding-bottom: 20px;
+}
+
+.history-back a {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 38px;
+
+  padding: 8px 14px;
+
+  color: var(--history-primary-dark);
+
+  background: transparent;
+
+  border: 1px solid transparent;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.history-back a::before {
+  content: "←";
+
+  margin-right: 7px;
+
+  font-size: 15px;
+}
+
+.history-back a:hover {
+  background: var(--history-primary-light);
+
+  border-color: #d5e6db;
+
+  color: var(--history-primary);
+}
+
+
+/* ============================================================
+   27. FOCUS ACCESSIBLE
+   ============================================================ */
+
+.history-page button:focus-visible,
+.history-page input:focus-visible,
+.history-page select:focus-visible,
+.history-page a:focus-visible {
+  outline: 3px solid rgba(17, 118, 66, 0.18);
+
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   28. RESPONSIVE — 1200 PX
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .history-page {
+    padding: 28px;
+  }
+
+  .history-stats {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .history-filters {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .history-filter-actions {
+    grid-column: 1 / -1;
+
+    justify-content: flex-start;
+  }
+}
+
+
+/* ============================================================
+   29. RESPONSIVE — 900 PX
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .history-page {
+    padding: 22px;
+  }
+
+  .history-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .history-refresh-button {
+    width: auto;
+  }
+
+  .history-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .history-table {
+    min-width: 1000px;
+  }
+}
+
+
+/* ============================================================
+   30. RESPONSIVE — 650 PX
+   ============================================================ */
+
+@media (max-width: 650px) {
+  .history-page {
+    padding: 16px;
+  }
+
+  .history-title-area {
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .history-title-icon {
+    flex-basis: 46px;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+  }
+
+  .history-title-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .history-title-area h1 {
+    font-size: 23px;
+  }
+
+  .history-title-area p {
+    font-size: 13px;
+  }
+
+  .history-refresh-button {
+    width: 100%;
+  }
+
+  .history-stats {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .history-stat-card {
+    padding: 16px;
+  }
+
+  .history-filters-section {
+    padding: 16px;
+  }
+
+  .history-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .history-filter-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+  }
+
+  .history-search-button,
+  .history-reset-button {
+    width: 100%;
+  }
+
+  .history-table-header {
+    padding: 17px 16px;
+  }
+
+  .history-pagination {
+    gap: 8px;
+  }
+
+  .history-pagination > span {
+    min-width: auto;
+  }
+
+  .history-page-button {
+    padding: 8px 10px;
+  }
+
+  .history-page-button svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+/* ============================================================
+   31. RESPONSIVE — 420 PX
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .history-page {
+    padding: 12px;
+  }
+
+  .history-title-area {
+    gap: 10px;
+  }
+
+  .history-title-icon {
+    flex-basis: 42px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .history-title-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .history-title-area h1 {
+    font-size: 20px;
+  }
+
+  .history-title-area p {
+    font-size: 12px;
+  }
+
+  .history-filter-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .history-pagination {
+    justify-content: space-between;
+
+    gap: 6px;
+  }
+
+  .history-pagination > span {
+    font-size: 11px;
+  }
+
+  .history-page-button {
+    padding: 7px 8px;
+
+    font-size: 11px;
+  }
+
+  .history-page-button svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+/* ============================================================
+   32. MOTION RÉDUITE
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .history-stat-card,
+  .history-refresh-button,
+  .history-search-button,
+  .history-page-button,
+  .history-reset-button,
+  .history-back a {
+    transition: none;
+  }
+
+  .history-refresh-button:disabled svg,
+  .history-loading::before {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   FIN DU CSS
+   ============================================================ */
