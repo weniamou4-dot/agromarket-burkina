@@ -1,4 +1,3 @@
-
 import {
   useEffect,
   useMemo,
@@ -10,7 +9,9 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+
 import "../styles/pages/register.css";
+
 import { useAuth } from "../context/AuthContext";
 
 // ============================================================
@@ -34,7 +35,11 @@ function Icon({ name, size = 20 }) {
     case "user":
       return (
         <svg {...common}>
-          <circle cx="12" cy="8" r="3.5" />
+          <circle
+            cx="12"
+            cy="8"
+            r="3.5"
+          />
           <path d="M5 20c.8-3.3 3.1-5 7-5s6.2 1.7 7 5" />
         </svg>
       );
@@ -78,7 +83,11 @@ function Icon({ name, size = 20 }) {
       return (
         <svg {...common}>
           <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
-          <circle cx="12" cy="12" r="2.5" />
+          <circle
+            cx="12"
+            cy="12"
+            r="2.5"
+          />
         </svg>
       );
 
@@ -121,9 +130,16 @@ function extraireMessageErreur(error) {
     return "Impossible de créer votre compte.";
   }
 
-  // Erreur Axios / réponse FastAPI
-  if (error.response?.data?.detail) {
-    const detail = error.response.data.detail;
+  // ----------------------------------------------------------
+  // API CLIENT AGROMARKET
+  // client.js utilise fetch() et place la réponse
+  // serveur dans error.data
+  // ----------------------------------------------------------
+
+  const data = error.data;
+
+  if (data?.detail) {
+    const detail = data.detail;
 
     if (Array.isArray(detail)) {
       return detail
@@ -134,6 +150,7 @@ function extraireMessageErreur(error) {
 
           return (
             item?.msg ||
+            item?.message ||
             "Erreur de validation."
           );
         })
@@ -145,12 +162,57 @@ function extraireMessageErreur(error) {
     }
   }
 
-  // Erreur JavaScript classique
-  if (typeof error.message === "string") {
+  // ----------------------------------------------------------
+  // COMPATIBILITÉ AXIOS
+  // ----------------------------------------------------------
+
+  const axiosDetail =
+    error.response?.data?.detail;
+
+  if (axiosDetail) {
+    if (Array.isArray(axiosDetail)) {
+      return axiosDetail
+        .map((item) => {
+          if (typeof item === "string") {
+            return item;
+          }
+
+          return (
+            item?.msg ||
+            item?.message ||
+            "Erreur de validation."
+          );
+        })
+        .join(" ");
+    }
+
+    if (typeof axiosDetail === "string") {
+      return axiosDetail;
+    }
+  }
+
+  // ----------------------------------------------------------
+  // ERREUR JAVASCRIPT
+  // ----------------------------------------------------------
+
+  if (
+    typeof error.message === "string" &&
+    error.message.trim()
+  ) {
     return error.message;
   }
 
   return "Impossible de créer votre compte.";
+}
+
+// ============================================================
+// UTILITAIRE TÉLÉPHONE
+// ============================================================
+
+function normaliserTelephone(value) {
+  return String(value || "")
+    .replace(/[\s\-().]/g, "")
+    .trim();
 }
 
 // ============================================================
@@ -183,13 +245,23 @@ function Register() {
   // ÉTATS UI
   // ==========================================================
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showPassword, setShowPassword] =
+    useState(false);
 
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [submitting, setSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] =
+    useState(false);
+
+  const [acceptTerms, setAcceptTerms] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
+
+  const [success, setSuccess] =
+    useState("");
+
+  const [submitting, setSubmitting] =
+    useState(false);
 
   // ==========================================================
   // REDIRECTION SI DÉJÀ CONNECTÉ
@@ -240,7 +312,8 @@ function Register() {
     const nom = form.nom.trim();
 
     if (!nom) {
-      errors.nom = "Le nom est obligatoire.";
+      errors.nom =
+        "Le nom est obligatoire.";
     } else if (nom.length < 2) {
       errors.nom =
         "Le nom doit contenir au moins 2 caractères.";
@@ -250,12 +323,13 @@ function Register() {
     // TÉLÉPHONE
     // --------------------------------------------------------
 
-    const telephone = form.telephone.trim();
+    const telephone =
+      form.telephone.trim();
 
-    const telephoneNormalise = telephone.replace(
-      /[\s\-\.()]/g,
-      ""
-    );
+    const telephoneNormalise =
+      normaliserTelephone(
+        telephone
+      );
 
     if (!telephone) {
       errors.telephone =
@@ -271,11 +345,14 @@ function Register() {
     // EMAIL
     // --------------------------------------------------------
 
-    const email = form.email.trim();
+    const email =
+      form.email.trim();
 
     if (
       email &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        email
+      )
     ) {
       errors.email =
         "L'adresse email n'est pas valide.";
@@ -285,21 +362,30 @@ function Register() {
     // MOT DE PASSE
     // --------------------------------------------------------
 
-    const password = form.mot_de_passe;
+    const password =
+      form.mot_de_passe;
 
     if (!password) {
       errors.mot_de_passe =
         "Le mot de passe est obligatoire.";
-    } else if (password.length < 8) {
+    } else if (
+      password.length < 8
+    ) {
       errors.mot_de_passe =
         "Le mot de passe doit contenir au moins 8 caractères.";
-    } else if (!/[a-z]/.test(password)) {
+    } else if (
+      !/[a-z]/.test(password)
+    ) {
       errors.mot_de_passe =
         "Le mot de passe doit contenir au moins une lettre minuscule.";
-    } else if (!/[A-Z]/.test(password)) {
+    } else if (
+      !/[A-Z]/.test(password)
+    ) {
       errors.mot_de_passe =
         "Le mot de passe doit contenir au moins une lettre majuscule.";
-    } else if (!/[0-9]/.test(password)) {
+    } else if (
+      !/[0-9]/.test(password)
+    ) {
       errors.mot_de_passe =
         "Le mot de passe doit contenir au moins un chiffre.";
     }
@@ -308,7 +394,9 @@ function Register() {
     // CONFIRMATION
     // --------------------------------------------------------
 
-    if (!form.confirmation_mot_de_passe) {
+    if (
+      !form.confirmation_mot_de_passe
+    ) {
       errors.confirmation_mot_de_passe =
         "Veuillez confirmer votre mot de passe.";
     } else if (
@@ -348,12 +436,13 @@ function Register() {
     // VALIDATION CLIENT
     // --------------------------------------------------------
 
-    if (Object.keys(validation).length > 0) {
+    if (
+      Object.keys(validation).length > 0
+    ) {
       const firstError =
         Object.values(validation)[0];
 
       setError(firstError);
-
       return;
     }
 
@@ -361,38 +450,79 @@ function Register() {
     // INSCRIPTION
     // --------------------------------------------------------
 
-    let redirectTimer = null;
-
     try {
       setSubmitting(true);
 
       /*
-       * IMPORTANT
+       * ------------------------------------------------------
+       * DONNÉES ENVOYÉES AU BACKEND
+       * ------------------------------------------------------
        *
-       * Le frontend n'envoie PAS :
-       *
+       * Le backend définit lui-même :
        * - role
        * - statut_compte
        * - google_id
-       * - methode_authentification
+       * - méthode d'authentification
        *
-       * Le backend les définit lui-même.
+       * Le téléphone est normalisé avant l'envoi.
        */
 
-      await register({
-        nom: form.nom.trim(),
+      const userData = {
+        nom:
+          form.nom.trim(),
 
-        telephone: form.telephone.trim(),
+        telephone:
+          normaliserTelephone(
+            form.telephone
+          ),
 
-        email: form.email.trim()
-          ? form.email.trim()
-          : null,
+        email:
+          form.email.trim()
+            ? form.email.trim()
+            : null,
 
-        mot_de_passe: form.mot_de_passe,
-      });
+        mot_de_passe:
+          form.mot_de_passe,
+        confidentialite_acceptee:
+          acceptTerms,
+      };
+
+      /*
+       * ------------------------------------------------------
+       * LOG DE DIAGNOSTIC
+       * ------------------------------------------------------
+       *
+       * Le mot de passe n'est jamais affiché.
+       */
+
+      console.log(
+        "Inscription AgroMarket :",
+        {
+          ...userData,
+          mot_de_passe: "[masqué]",
+        }
+      );
+
+      /*
+       * ------------------------------------------------------
+       * APPEL API
+       * ------------------------------------------------------
+       */
+
+      const response =
+        await register(userData);
+
+      console.log(
+        "Inscription réussie :",
+        response
+      );
+
+      // ------------------------------------------------------
+      // SUCCÈS
+      // ------------------------------------------------------
 
       setSuccess(
-        "Votre compte a été créé avec succès."
+        "Votre compte a été créé avec succès. Redirection vers la connexion..."
       );
 
       // ------------------------------------------------------
@@ -416,29 +546,30 @@ function Register() {
             )}`
           : "/connexion";
 
-      redirectTimer = window.setTimeout(() => {
-        navigate(destination, {
-          replace: true,
-        });
-      }, 700);
+      window.setTimeout(() => {
+        navigate(
+          destination,
+          {
+            replace: true,
+          }
+        );
+      }, 900);
+
     } catch (error) {
       console.error(
-        "Erreur inscription :",
+        "Erreur inscription AgroMarket :",
         error
       );
 
       setError(
-        extraireMessageErreur(error)
+        extraireMessageErreur(
+          error
+        )
       );
+
     } finally {
       setSubmitting(false);
     }
-
-    return () => {
-      if (redirectTimer) {
-        window.clearTimeout(redirectTimer);
-      }
-    };
   }
 
   // ==========================================================
@@ -779,7 +910,6 @@ function Register() {
                   htmlFor="email"
                   className="form-label"
                 >
-
                   Adresse email
 
                   <span className="text-muted">
@@ -849,7 +979,9 @@ function Register() {
                         ? "text"
                         : "password"
                     }
-                    value={form.mot_de_passe}
+                    value={
+                      form.mot_de_passe
+                    }
                     onChange={handleChange}
                     className="form-input auth-input auth-password-input"
                     placeholder="Choisissez un mot de passe"
@@ -1110,6 +1242,7 @@ function Register() {
                       name="arrow"
                       size={18}
                     />
+
                   </>
                 )}
 
