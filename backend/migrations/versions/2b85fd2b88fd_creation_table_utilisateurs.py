@@ -20,7 +20,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    """Create the initial utilisateurs table."""
+    """Créer la table initiale utilisateurs."""
 
     op.create_table(
         "utilisateurs",
@@ -49,7 +49,13 @@ def upgrade() -> None:
             nullable=True,
         ),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("google_id"),
+        sa.UniqueConstraint(
+            "telephone",
+            name="utilisateurs_telephone_key",
+        ),
+        sa.UniqueConstraint(
+            "google_id",
+        ),
     )
 
     op.create_index(
@@ -75,7 +81,7 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    """Drop the initial utilisateurs table."""
+    """Supprimer la table initiale utilisateurs."""
 
     op.drop_index(
         "ix_utilisateurs_confidentialite_acceptee",

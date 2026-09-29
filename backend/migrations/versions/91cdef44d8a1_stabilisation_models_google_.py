@@ -19,7 +19,7 @@ from sqlalchemy.dialects import postgresql
 
 revision: str = "91cdef44d8a1"
 
-down_revision: Union[str, Sequence[str], None] = "836e2728b23e"
+down_revision: Union[str, Sequence[str], None] = "eec73666c878"
 
 branch_labels: Union[
     str,
